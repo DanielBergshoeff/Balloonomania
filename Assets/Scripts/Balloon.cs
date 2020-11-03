@@ -17,50 +17,41 @@ public class Balloon : MonoBehaviour
 
     public float Heat = 0f;
 
-    private Rigidbody2D myRigidbody;
-    private bool grounded = false;
+    protected Rigidbody2D myRigidbody;
+    protected bool grounded = false;
 
     // Start is called before the first frame update
-    void Start()
+    protected void Start()
     {
         myRigidbody = GetComponent<Rigidbody2D>();   
     }
 
-    // Update is called once per frame
-    void Update()
-    {
+    protected void Update() {
         if (Heat > 0f)
             Heat -= StandardHeatLoss * Time.deltaTime;
 
         FirePart.transform.localScale = (Heat / MaxHeat) * 1.5f * Vector3.one;
 
-        if (Input.GetMouseButton(0) || Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W)) {
-            ApplyHeat();
-        }
-        if (Input.GetMouseButton(1) || Input.GetKey(KeyCode.S)) {
-            RemoveHeat();
-        }
-
         myRigidbody.AddForce(transform.up * Heat * UpwardVelocity);
-
-        if(myRigidbody.velocity.magnitude > MaxUpwardVelocity) {
-            Vector2 vel = myRigidbody.velocity.normalized;
-            myRigidbody.velocity = vel * MaxUpwardVelocity;
-        }
 
         grounded = Physics2D.Raycast(transform.position - transform.up * 0.01f, -transform.up, 0.15f).collider != null;
 
-        if(!grounded)
+        if (!grounded)
             transform.position = transform.position + transform.right * Time.deltaTime * HorizontalSpeed * GameManager.GetSpeed(BalloonPart.position);
+
+        if (myRigidbody.velocity.magnitude > MaxUpwardVelocity) {
+            Vector2 vel = myRigidbody.velocity.normalized;
+            myRigidbody.velocity = vel * MaxUpwardVelocity;
+        }
     }
 
-    private void ApplyHeat() {
+    protected void ApplyHeat() {
         if(Heat < MaxHeat) {
             Heat += AddHeatPerSecond * Time.deltaTime;
         }
     }
 
-    private void RemoveHeat() {
+    protected void RemoveHeat() {
         if(Heat > 0f) {
             Heat -= RemoveHeatPerSecond * Time.deltaTime;
         }
