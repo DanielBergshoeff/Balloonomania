@@ -5,6 +5,7 @@ using UnityEngine;
 public class Balloon : MonoBehaviour
 {
     public Transform BalloonPart;
+    public Transform FirePart;
     public float UpwardVelocity = 1f;
     public float MaxUpwardVelocity = 2f;
     public float HorizontalSpeed = 1f;
@@ -30,6 +31,8 @@ public class Balloon : MonoBehaviour
     {
         if (Heat > 0f)
             Heat -= StandardHeatLoss * Time.deltaTime;
+
+        FirePart.transform.localScale = (Heat / MaxHeat) * 1.5f * Vector3.one;
 
         if (Input.GetMouseButton(0) || Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W)) {
             ApplyHeat();
