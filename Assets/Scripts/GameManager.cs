@@ -34,9 +34,6 @@ public class GameManager : MonoBehaviour
         timeTilSwitch = new float[AmtOfSegments];
         effects = new ParticleSystem[AmtOfSegments];
         for (int i = 0; i < segments.Length; i++) {
-            /*GameObject go = Instantiate(LinePrefab);
-            go.transform.position = new Vector3(0f, i * SegmentSize, 0f);*/
-
             GameObject vfx = Instantiate(EffectPrefab);
             vfx.transform.position = new Vector3(0f, i * SegmentSize, 0f);
 
@@ -73,12 +70,27 @@ public class GameManager : MonoBehaviour
         ParticleSystem.NoiseModule nm = effects[segment].noise;
         nm.strength = segments[segment] * 0.4f;
 
-        ParticleSystem.TrailModule tm = effects[segment].trails;
-        //tm.lifetime = 0.4f / segments[segment];
+        /*ParticleSystem.TrailModule tm = effects[segment].trails;
+        tm.lifetime = 0.4f / segments[segment];*/
     }
 
     public static int GetSpeed(Vector3 pos) {
         int segment = (int) (pos.y / instance.SegmentSize);
         return instance.segments[segment];
+    }
+
+    public static int GetDirection(Vector3 pos, int segmentBuffer) {
+        int segment = (int)(pos.y / instance.SegmentSize);
+        int speed = instance.segments[segment];
+        int topSpeed = 0;
+        for (int i = -segmentBuffer; i < segmentBuffer; i++) {
+            if(segment + i < instance.segments.Length && segment + i >= 0) {
+                if(instance.segments[segment + i] > speed) {
+
+                }
+            }
+        }
+
+        return 0;
     }
 }
