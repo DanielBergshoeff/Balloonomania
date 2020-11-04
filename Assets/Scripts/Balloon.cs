@@ -21,6 +21,7 @@ public class Balloon : MonoBehaviour
     protected Rigidbody2D myRigidbody;
     protected bool grounded = false;
     protected List<GameObject> stabs;
+    protected float stabbedCooldown = 0f;
 
     // Start is called before the first frame update
     protected void Start()
@@ -30,6 +31,9 @@ public class Balloon : MonoBehaviour
     }
 
     protected void Update() {
+        if (stabbedCooldown > 0f)
+            stabbedCooldown -= Time.deltaTime;
+
         if (Heat > 0f) {
             Heat -= StandardHeatLoss * Time.deltaTime;
             foreach(GameObject go in stabs) {
@@ -64,8 +68,15 @@ public class Balloon : MonoBehaviour
         }
     }
 
-    public void GetStabbed(GameObject stab) {
-        stabs.Add(stab);
-        stab.transform.parent = transform;
+    private void OnCollisionEnter2D(Collision2D collision) {
+        if (!collision.collider.CompareTag("Swordpoint") || stabbedCooldown > 0f)
+            return;
+
+        stabbedCooldown = 0.5f;
+
+        GameObject go = Instantiate(PlayerBalloon.Instance.HolePrefab);
+        go.transform.position = collision.GetContact(0).point;
+        go.transform.parent = transform;
+        stabs.Add(go);
     }
 }

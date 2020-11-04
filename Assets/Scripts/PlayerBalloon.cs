@@ -1,14 +1,22 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerBalloon : Balloon
 {
+    public static PlayerBalloon Instance;
+    public Transform Sword;
+    public Transform SwordPoint;
     public GameObject HolePrefab;
     public float StabCooldown = 1f;
     public float StabDistance = 3f;
 
     private float stabCooldown = 0f;
+
+    private void Awake() {
+        Instance = this;
+    }
 
     // Update is called once per frame
     protected new void Update()
@@ -29,22 +37,16 @@ public class PlayerBalloon : Balloon
         if (stabCooldown <= 0f && Input.GetMouseButton(0)) {
             Stab();
         }
+
+        Vector3 mPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Sword.LookAt(new Vector3(mPos.x, mPos.y, 0f));
     }
 
     private void Stab() {
         stabCooldown = StabCooldown;
 
-        Vector2 dir = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        Debug.DrawRay(transform.position, dir.normalized * StabDistance);
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, dir.normalized, StabDistance);
-        if (hit.collider.CompareTag("Balloon")) {
-            Balloon b = hit.collider.GetComponentInParent<Balloon>();
-
-            if (b != null) {
-                GameObject go = Instantiate(HolePrefab);
-                go.transform.position = hit.point;
-                b.GetStabbed(go);
-            }
-        }
+        Sequence sq = DOTween.Sequence();
+        sq.Append(SwordPoint.DOScaleY(1, 0.3f));
+        sq.Append(SwordPoint.DOScaleY(0.1f, 0.3f));
     }
 }
