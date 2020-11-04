@@ -14,21 +14,28 @@ public class Balloon : MonoBehaviour
     public float AddHeatPerSecond = 2f;
     public float RemoveHeatPerSecond = 2f;
     public float StandardHeatLoss = 1f;
+    public float HoleHeatLoss = 3f;
 
     public float Heat = 0f;
 
     protected Rigidbody2D myRigidbody;
     protected bool grounded = false;
+    protected List<GameObject> stabs;
 
     // Start is called before the first frame update
     protected void Start()
     {
-        myRigidbody = GetComponent<Rigidbody2D>();   
+        myRigidbody = GetComponent<Rigidbody2D>();
+        stabs = new List<GameObject>();
     }
 
     protected void Update() {
-        if (Heat > 0f)
+        if (Heat > 0f) {
             Heat -= StandardHeatLoss * Time.deltaTime;
+            foreach(GameObject go in stabs) {
+                Heat -= HoleHeatLoss * Time.deltaTime;
+            }
+        }
 
         FirePart.transform.localScale = (Heat / MaxHeat) * 1.5f * Vector3.one;
 
@@ -55,5 +62,10 @@ public class Balloon : MonoBehaviour
         if(Heat > 0f) {
             Heat -= RemoveHeatPerSecond * Time.deltaTime;
         }
+    }
+
+    public void GetStabbed(GameObject stab) {
+        stabs.Add(stab);
+        stab.transform.parent = transform;
     }
 }

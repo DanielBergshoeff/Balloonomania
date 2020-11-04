@@ -1084,6 +1084,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerBalloon
       objectReference: {fileID: 0}
+    - target: {fileID: 7221967281791534297, guid: 69782eb2a28830140b6db858c459fa5b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7221967281791534300, guid: 69782eb2a28830140b6db858c459fa5b,
+        type: 3}
+      propertyPath: HolePrefab
+      value: 
+      objectReference: {fileID: 2109321710501617779, guid: 2b5ec515c4757cd40971bb65616bb521,
+        type: 3}
+    - target: {fileID: 7221967281791534300, guid: 69782eb2a28830140b6db858c459fa5b,
+        type: 3}
+      propertyPath: StabDistance
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7221967281791534302, guid: 69782eb2a28830140b6db858c459fa5b,
         type: 3}
       propertyPath: m_LocalPosition.x
