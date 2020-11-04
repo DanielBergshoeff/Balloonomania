@@ -6,6 +6,8 @@ public class AIBalloon : Balloon
 {
     protected new void Update() {
         base.Update();
+
+        CheckDirection();
     }
 
     private void CheckDirection() {
