@@ -79,18 +79,21 @@ public class GameManager : MonoBehaviour
         return instance.segments[segment];
     }
 
-    public static int GetDirection(Vector3 pos, int segmentBuffer) {
+    public static float GetDirection(Vector3 pos, int segmentBuffer) {
         int segment = (int)(pos.y / instance.SegmentSize);
         int speed = instance.segments[segment];
         int topSpeed = 0;
-        for (int i = -segmentBuffer; i < segmentBuffer; i++) {
+        for (int i = -segmentBuffer; i <= segmentBuffer; i++) {
             if(segment + i < instance.segments.Length && segment + i >= 0) {
                 if(instance.segments[segment + i] > speed) {
-
+                    speed = instance.segments[segment + i];
+                    topSpeed = i;
                 }
             }
         }
 
-        return 0;
+        float dir = pos.y - (segment + topSpeed) * instance.SegmentSize;
+
+        return dir;
     }
 }
