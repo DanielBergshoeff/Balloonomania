@@ -64,7 +64,6 @@ public class Balloon : MonoBehaviour
         myRigidbody.AddForce(transform.up * Heat * UpwardVelocity);
 
         grounded = Physics2D.Raycast(transform.position - transform.up * 0.01f, -transform.up, 0.15f).collider != null;
-        grounded = true;
 
         if (!grounded)
             transform.position = transform.position + transform.right * Time.deltaTime * HorizontalSpeed * GameManager.GetSpeed(BalloonPart.position);
