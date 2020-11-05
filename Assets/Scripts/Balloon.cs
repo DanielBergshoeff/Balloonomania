@@ -27,6 +27,7 @@ public class Balloon : MonoBehaviour
 
     [Header("Abilities")]
     public float StabCooldown = 1f;
+    public int MaxHoles = 3;
 
     protected Rigidbody2D myRigidbody;
     protected bool grounded = false;
@@ -117,6 +118,9 @@ public class Balloon : MonoBehaviour
     }
 
     protected void Stabbed(Vector3 pos) {
+        if (stabs.Count >= MaxHoles)
+            return;
+
         stabbedCooldown = 0.5f;
 
         GameObject go = Instantiate(PlayerBalloon.Instance.HolePrefab);

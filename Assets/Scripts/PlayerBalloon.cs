@@ -28,7 +28,18 @@ public class PlayerBalloon : Balloon
             Stab();
         }
 
+        if (Input.GetMouseButtonDown(1)) {
+            TryFix();
+        }
+
         Vector3 mPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Sword.LookAt(new Vector3(mPos.x, mPos.y, 0f));
+    }
+
+    protected void TryFix() {
+        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+        if(hit.collider != null) {
+            Debug.Log(hit.collider.gameObject.name);
+        }
     }
 }
