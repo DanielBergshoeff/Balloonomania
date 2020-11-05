@@ -12,7 +12,6 @@ public class GameManager : MonoBehaviour
     public GameObject LinePrefab;
     public GameObject EffectPrefab;
 
-
     [Header("Random values")]
     public int MinSpeed = -3;
     public int MaxSpeed = 3;
@@ -20,17 +19,14 @@ public class GameManager : MonoBehaviour
     public float MinTimePerSwitch = 3f;
     public float MaxTimePerSwitch = 10f;
 
-
-    private int[] segments;
-    private float[] timeTilSwitch;
-    private ParticleSystem[] effects;
-    private Transform player;
-
-
     [Header("Pause menu")]
     public GameObject PausePanel;
 
     private bool paused = false;
+    private int[] segments;
+    private float[] timeTilSwitch;
+    private ParticleSystem[] effects;
+    private Transform player;
 
     // Start is called before the first frame update
     void Start()
@@ -82,9 +78,6 @@ public class GameManager : MonoBehaviour
 
         ParticleSystem.NoiseModule nm = effects[segment].noise;
         nm.strength = segments[segment] * 0.4f;
-
-        /*ParticleSystem.TrailModule tm = effects[segment].trails;
-        tm.lifetime = 0.4f / segments[segment];*/
     }
 
     public static int GetSpeed(Vector3 pos) {
