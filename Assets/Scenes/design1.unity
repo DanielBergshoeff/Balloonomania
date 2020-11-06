@@ -560,7 +560,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &435242877
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -850,7 +850,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &592792878
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1105,7 +1105,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &746753370
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1210,8 +1210,8 @@ MonoBehaviour:
     type: 3}
   MinSpeed: -2
   MaxSpeed: 4
-  MinTimePerSwitch: 8
-  MaxTimePerSwitch: 12
+  MinTimePerSwitch: 2
+  MaxTimePerSwitch: 4
   PausePanel: {fileID: 0}
 --- !u!4 &759527529
 Transform:
@@ -1465,7 +1465,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &880391013
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1606,7 +1606,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1252184035
 SpriteRenderer:
   m_ObjectHideFlags: 0
