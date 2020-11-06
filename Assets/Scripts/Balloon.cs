@@ -102,13 +102,11 @@ public class Balloon : MonoBehaviour
 
     protected IEnumerator FixHole(GameObject hole) {
         stabs.Remove(hole);
-        fixingHole = hole;
-        fixingHole.transform.DOScale(0f, TimeForHoleFix);
+        hole.transform.DOScale(0f, TimeForHoleFix);
 
         yield return new WaitForSeconds(TimeForHoleFix);
 
-        Destroy(fixingHole);
-        fixingHole = null;
+        Destroy(hole);
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {
