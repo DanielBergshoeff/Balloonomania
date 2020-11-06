@@ -1210,8 +1210,9 @@ MonoBehaviour:
     type: 3}
   MinSpeed: -2
   MaxSpeed: 4
-  MinTimePerSwitch: 2
-  MaxTimePerSwitch: 4
+  MinTimePerSwitch: 8
+  MaxTimePerSwitch: 12
+  MinForwardSegments: 2
   PausePanel: {fileID: 0}
 --- !u!4 &759527529
 Transform:
