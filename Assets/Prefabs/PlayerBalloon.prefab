@@ -312,7 +312,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7221967281317874620}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.55, z: 0}
+  m_LocalPosition: {x: -0.015, y: 1.308, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7221967282791992464}
@@ -399,6 +399,8 @@ MonoBehaviour:
   StandardHeatLoss: 1
   HoleHeatLoss: 3
   Heat: 0
+  Sword: {fileID: 0}
+  SwordPoint: {fileID: 0}
   HolePrefab: {fileID: 0}
   StabCooldown: 1
   StabDistance: 3
@@ -527,8 +529,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7221967282791992467}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.169, y: -0.125, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalPosition: {x: 0.169, y: 0.043, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.4, z: 1}
   m_Children: []
   m_Father: {fileID: 7221967281317874621}
   m_RootOrder: 0

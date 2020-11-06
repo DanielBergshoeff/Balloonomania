@@ -12,7 +12,6 @@ public class GameManager : MonoBehaviour
     public GameObject LinePrefab;
     public GameObject EffectPrefab;
 
-
     [Header("Random values")]
     public int MinSpeed = -3;
     public int MaxSpeed = 3;
@@ -20,17 +19,16 @@ public class GameManager : MonoBehaviour
     public float MinTimePerSwitch = 3f;
     public float MaxTimePerSwitch = 10f;
 
-
-    private int[] segments;
-    private float[] timeTilSwitch;
-    private ParticleSystem[] effects;
-    private Transform player;
-
+    public int MinForwardSegments = 2;
 
     [Header("Pause menu")]
     public GameObject PausePanel;
 
     private bool paused = false;
+    private int[] segments;
+    private float[] timeTilSwitch;
+    private ParticleSystem[] effects;
+    private Transform player;
 
     // Start is called before the first frame update
     void Start()
@@ -40,6 +38,7 @@ public class GameManager : MonoBehaviour
         timeTilSwitch = new float[AmtOfSegments];
         effects = new ParticleSystem[AmtOfSegments];
         for (int i = 0; i < segments.Length; i++) {
+            segments[i] = 1;
             GameObject vfx = Instantiate(EffectPrefab);
             vfx.transform.position = new Vector3(0f, i * SegmentSize, 0f);
 
@@ -75,16 +74,29 @@ public class GameManager : MonoBehaviour
     }
 
     private void AssignNewSpeed(int segment) {
-        segments[segment] = Mathf.Clamp(segments[segment] + ((Random.value < 0.5f) ? 1 : -1) , MinSpeed, MaxSpeed);
+        int val = Random.value < 0.5f ? 1 : -1;
+        if (segments[segment] + val == 0)
+            val = val * 2;
+        if(segments[segment] + val < 0) {
+            if (AmtOfForwardLanes() <= MinForwardSegments)
+                val = 0;
+        }
+        segments[segment] = Mathf.Clamp(segments[segment] + val , MinSpeed, MaxSpeed);
         timeTilSwitch[segment] = Random.Range(MinTimePerSwitch, MaxTimePerSwitch);
         ParticleSystem.VelocityOverLifetimeModule vom = effects[segment].velocityOverLifetime;
         vom.x = segments[segment] * 3f;
 
         ParticleSystem.NoiseModule nm = effects[segment].noise;
         nm.strength = segments[segment] * 0.4f;
+    }
 
-        /*ParticleSystem.TrailModule tm = effects[segment].trails;
-        tm.lifetime = 0.4f / segments[segment];*/
+    private int AmtOfForwardLanes() {
+        int count = 0;
+        for (int i = 0; i < segments.Length; i++) {
+            if (segments[i] > 0)
+                count++;
+        }
+        return count;
     }
 
     public static int GetSpeed(Vector3 pos) {
