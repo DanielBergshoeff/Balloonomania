@@ -103,6 +103,7 @@ public class Balloon : MonoBehaviour
     protected IEnumerator FixHole(GameObject hole) {
         stabs.Remove(hole);
         fixingHole = hole;
+        fixingHole.transform.DOScale(0f, TimeForHoleFix);
 
         yield return new WaitForSeconds(TimeForHoleFix);
 
