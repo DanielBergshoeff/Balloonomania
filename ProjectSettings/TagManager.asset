@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Balloon
   - Swordpoint
+  - Hole
   layers:
   - Default
   - TransparentFX
