@@ -39,9 +39,7 @@ public class PlayerBalloon : Balloon
     protected void TryFix() {
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
         if(hit.collider != null && hit.collider.CompareTag("Hole")) {
-            Debug.Log("Hit hole: " + hit.collider.name);
             if (stabs.Contains(hit.collider.gameObject)) {
-                Debug.Log("Start fixing");
                 StartCoroutine(FixHole(hit.collider.gameObject));
             }
         }
