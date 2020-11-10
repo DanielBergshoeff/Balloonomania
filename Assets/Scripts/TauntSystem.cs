@@ -19,7 +19,7 @@ public class TauntSystem : MonoBehaviour
 
     public void Taunt(BalloonInfo bi) {
         GameObject go = Instantiate(TauntPrefab);
-        go.transform.position = bi.transform.position + Vector3.up * 2f;
+        go.transform.position = bi.transform.position + Vector3.up * 2f + Vector3.right * 3f;
         go.GetComponentInChildren<TextMeshProUGUI>().text = GetRandomTaunt();
         go.transform.parent = bi.transform;
 

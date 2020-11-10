@@ -13,6 +13,8 @@ public class BalloonPlayerStabbing : BalloonStabbing
         }
 
         Vector3 mPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Sword.LookAt(new Vector3(mPos.x, mPos.y, 0f));
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        Sword.LookAt(new Vector3(mPos.x, mPos.y, transform.position.z));
     }
 }

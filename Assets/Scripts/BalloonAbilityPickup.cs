@@ -144,7 +144,6 @@ public class BalloonAbilityPickup : MonoBehaviour
 
             hookedBalloon = null;
             hook = null;
-            enabled = false;
             return;
         }
 
