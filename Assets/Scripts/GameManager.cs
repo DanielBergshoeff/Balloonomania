@@ -114,9 +114,9 @@ public class GameManager : MonoBehaviour
         int segment = (int)(pos.y / instance.SegmentSize);
 
         if (segment < 0) 
-            return 1;
-        else if (segment >= instance.segments.Length)
             return -1;
+        else if (segment >= instance.segments.Length)
+            return 1;
 
         int speed = instance.segments[segment];
         int topSpeed = 0;
