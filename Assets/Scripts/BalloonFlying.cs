@@ -25,6 +25,7 @@ public class BalloonFlying : MonoBehaviour
 
     private void Awake() {
         myRigidbody = GetComponent<Rigidbody2D>();
+        Heat.Value = 0f;
     }
 
     // Update is called once per frame
