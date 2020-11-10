@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -25,4 +26,5 @@ public class Hook : MonoBehaviour
     }
 }
 
+[Serializable]
 public class BalloonEvent : UnityEvent<BalloonInfo> { }

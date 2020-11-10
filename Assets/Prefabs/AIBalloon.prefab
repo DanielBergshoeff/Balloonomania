@@ -784,6 +784,7 @@ MonoBehaviour:
     UseConstant: 0
     ConstantValue: 0
     Variable: {fileID: 11400000, guid: 40b78730fefeea84f8919192644fca4d, type: 2}
+  CheckLanesPerSide: {fileID: 11400000, guid: d71b2a0c50034b74b987dd9a2bb6c4ee, type: 2}
 --- !u!114 &8473860508436017911
 MonoBehaviour:
   m_ObjectHideFlags: 0

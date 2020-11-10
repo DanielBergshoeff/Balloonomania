@@ -6,6 +6,7 @@ public class BalloonFlyingAI : BalloonFlying
 {
     public Transform BalloonTop;
     public FloatReference CollisionCheckDistance;
+    public IntVariable CheckLanesPerSide;
 
 
     protected new void Update() {
