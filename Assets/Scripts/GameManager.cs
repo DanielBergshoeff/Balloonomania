@@ -12,7 +12,6 @@ public class GameManager : MonoBehaviour
     public GameObject LinePrefab;
     public GameObject EffectPrefab;
 
-
     [Header("Random values")]
     public int MinSpeed = -3;
     public int MaxSpeed = 3;
@@ -20,11 +19,20 @@ public class GameManager : MonoBehaviour
     public float MinTimePerSwitch = 3f;
     public float MaxTimePerSwitch = 10f;
 
+    public int MinForwardSegments = 2;
 
+    [Header("Pause menu")]
+    public GameObject PausePanel;
+
+    [Header("Collision")]
+    public LayerMask CollisionMask;
+
+    private bool paused = false;
     private int[] segments;
     private float[] timeTilSwitch;
     private ParticleSystem[] effects;
-    private Transform player;
+
+    public Vector3Variable PlayerBalloonPosition;
 
     // Start is called before the first frame update
     void Start()
@@ -34,9 +42,7 @@ public class GameManager : MonoBehaviour
         timeTilSwitch = new float[AmtOfSegments];
         effects = new ParticleSystem[AmtOfSegments];
         for (int i = 0; i < segments.Length; i++) {
-            /*GameObject go = Instantiate(LinePrefab);
-            go.transform.position = new Vector3(0f, i * SegmentSize, 0f);*/
-
+            segments[i] = 1;
             GameObject vfx = Instantiate(EffectPrefab);
             vfx.transform.position = new Vector3(0f, i * SegmentSize, 0f);
 
@@ -48,37 +54,105 @@ public class GameManager : MonoBehaviour
 
             AssignNewSpeed(i);
         }
-
-        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            if (!paused)
+                Pause();
+            else
+                UnPause();
+        }
+
         for (int i = 0; i < segments.Length; i++) {
             timeTilSwitch[i] -= Time.deltaTime;
             if (timeTilSwitch[i] <= 0f)
                 AssignNewSpeed(i);
 
-            effects[i].transform.parent.position = new Vector3(player.transform.position.x, effects[i].transform.parent.position.y, effects[i].transform.parent.position.z);
+            effects[i].transform.parent.position = new Vector3(PlayerBalloonPosition.Value.x, effects[i].transform.parent.position.y, effects[i].transform.parent.position.z);
         }
     }
 
     private void AssignNewSpeed(int segment) {
-        segments[segment] = Mathf.Clamp(segments[segment] + ((Random.value < 0.5f) ? 1 : -1) , MinSpeed, MaxSpeed);
+        int val = Random.value < 0.5f ? 1 : -1;
+        if (segments[segment] + val == 0)
+            val = val * 2;
+        if(segments[segment] + val < 0) {
+            if (AmtOfForwardLanes() <= MinForwardSegments)
+                val = 0;
+        }
+        segments[segment] = Mathf.Clamp(segments[segment] + val , MinSpeed, MaxSpeed);
         timeTilSwitch[segment] = Random.Range(MinTimePerSwitch, MaxTimePerSwitch);
         ParticleSystem.VelocityOverLifetimeModule vom = effects[segment].velocityOverLifetime;
         vom.x = segments[segment] * 3f;
 
         ParticleSystem.NoiseModule nm = effects[segment].noise;
         nm.strength = segments[segment] * 0.4f;
+    }
 
-        ParticleSystem.TrailModule tm = effects[segment].trails;
-        //tm.lifetime = 0.4f / segments[segment];
+    private int AmtOfForwardLanes() {
+        int count = 0;
+        for (int i = 0; i < segments.Length; i++) {
+            if (segments[i] > 0)
+                count++;
+        }
+        return count;
     }
 
     public static int GetSpeed(Vector3 pos) {
         int segment = (int) (pos.y / instance.SegmentSize);
+
+        if (segment < 0 || segment >= instance.segments.Length)
+            return 0;
+
         return instance.segments[segment];
+    }
+
+    public static float GetDirection(Vector3 pos, int segmentBuffer) {
+        int segment = (int)(pos.y / instance.SegmentSize);
+
+        if (segment < 0) 
+            return -1;
+        else if (segment >= instance.segments.Length)
+            return 1;
+
+        int speed = instance.segments[segment];
+        int topSpeed = 0;
+        for (int i = -segmentBuffer; i <= segmentBuffer; i++) {
+            if(segment + i < instance.segments.Length && segment + i >= 0) {
+                if(instance.segments[segment + i] > speed) {
+                    float dist = (segment + i) * instance.SegmentSize - pos.y;
+                    RaycastHit2D hit = Physics2D.Raycast(pos, Vector3.up * i, dist, instance.CollisionMask);
+                    Debug.DrawRay(pos, Vector3.up * i * dist, Color.magenta);
+
+                    if (hit.collider == null) {
+                        speed = instance.segments[segment + i];
+                        topSpeed = i;
+                    }
+                }
+            }
+        }
+
+        float dir = pos.y - (segment + topSpeed) * instance.SegmentSize;
+
+        return dir;
+    }
+
+    public void Quit() {
+        AppHelper.Quit();
+    }
+
+    public void Pause() {
+        Time.timeScale = 0f;
+        PausePanel.SetActive(true);
+        paused = true;
+    }
+
+    public void UnPause() {
+        Time.timeScale = 1f;
+        PausePanel.SetActive(false);
+        paused = false;
     }
 }
