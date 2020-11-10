@@ -775,7 +775,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14feae89b6430da40a7e3c5b55d543e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MinHeight: 5
+  MinHeight: 3
   MaxHeight: 20
 --- !u!20 &519420031
 Camera:
@@ -1888,7 +1888,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1349242919}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 213, y: 10.52, z: 0}
+  m_LocalPosition: {x: 214.78, y: 10.52, z: 0}
   m_LocalScale: {x: 2.134636, y: 2.604256, z: 2.134636}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2570,7 +2570,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1748550225}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 137.1, y: -4.5, z: 0}
+  m_LocalPosition: {x: 137.1, y: -6.9, z: 0}
   m_LocalScale: {x: 300, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
