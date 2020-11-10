@@ -24,11 +24,15 @@ public class GameManager : MonoBehaviour
     [Header("Pause menu")]
     public GameObject PausePanel;
 
+    [Header("Collision")]
+    public LayerMask CollisionMask;
+
     private bool paused = false;
     private int[] segments;
     private float[] timeTilSwitch;
     private ParticleSystem[] effects;
-    private Transform player;
+
+    public Vector3Variable PlayerBalloonPosition;
 
     // Start is called before the first frame update
     void Start()
@@ -50,8 +54,6 @@ public class GameManager : MonoBehaviour
 
             AssignNewSpeed(i);
         }
-
-        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     // Update is called once per frame
@@ -69,7 +71,7 @@ public class GameManager : MonoBehaviour
             if (timeTilSwitch[i] <= 0f)
                 AssignNewSpeed(i);
 
-            effects[i].transform.parent.position = new Vector3(player.transform.position.x, effects[i].transform.parent.position.y, effects[i].transform.parent.position.z);
+            effects[i].transform.parent.position = new Vector3(PlayerBalloonPosition.Value.x, effects[i].transform.parent.position.y, effects[i].transform.parent.position.z);
         }
     }
 
@@ -101,18 +103,34 @@ public class GameManager : MonoBehaviour
 
     public static int GetSpeed(Vector3 pos) {
         int segment = (int) (pos.y / instance.SegmentSize);
+
+        if (segment < 0 || segment >= instance.segments.Length)
+            return 0;
+
         return instance.segments[segment];
     }
 
     public static float GetDirection(Vector3 pos, int segmentBuffer) {
         int segment = (int)(pos.y / instance.SegmentSize);
+
+        if (segment < 0) 
+            return 1;
+        else if (segment >= instance.segments.Length)
+            return -1;
+
         int speed = instance.segments[segment];
         int topSpeed = 0;
         for (int i = -segmentBuffer; i <= segmentBuffer; i++) {
             if(segment + i < instance.segments.Length && segment + i >= 0) {
                 if(instance.segments[segment + i] > speed) {
-                    speed = instance.segments[segment + i];
-                    topSpeed = i;
+                    float dist = (segment + i) * instance.SegmentSize - pos.y;
+                    RaycastHit2D hit = Physics2D.Raycast(pos, Vector3.up * i, dist, instance.CollisionMask);
+                    Debug.DrawRay(pos, Vector3.up * i * dist, Color.magenta);
+
+                    if (hit.collider == null) {
+                        speed = instance.segments[segment + i];
+                        topSpeed = i;
+                    }
                 }
             }
         }

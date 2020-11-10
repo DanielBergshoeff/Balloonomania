@@ -307,6 +307,36 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &624866192866030753
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3347890530045408122}
+  m_Layer: 0
+  m_Name: Top
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3347890530045408122
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 624866192866030753}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 6.515, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8012792350125822490}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8012792349514634770
 GameObject:
   m_ObjectHideFlags: 0
@@ -652,7 +682,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8012792350125822490}
   - component: {fileID: 8012792350125822491}
-  - component: {fileID: 8012792350125822500}
+  - component: {fileID: 1978652555}
+  - component: {fileID: 8473860508436017911}
+  - component: {fileID: 5066535952429860995}
+  - component: {fileID: 1725478964}
   m_Layer: 0
   m_Name: AIBalloon
   m_TagString: Untagged
@@ -675,6 +708,7 @@ Transform:
   - {fileID: 8012792349514634769}
   - {fileID: 8012792349786943254}
   - {fileID: 899338444}
+  - {fileID: 3347890530045408122}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -699,7 +733,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &8012792350125822500
+--- !u!114 &1978652555
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -708,23 +742,114 @@ MonoBehaviour:
   m_GameObject: {fileID: 8012792350125822501}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e73e41c1ddf83424ba4d58ba20316d6c, type: 3}
+  m_Script: {fileID: 11500000, guid: a462695f7413930409e123187b113dd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BalloonPartPosition: {fileID: 11400000, guid: c1dfc09bb643f1a43bca319c9152df3a,
+    type: 2}
+  MaxHeat:
+    UseConstant: 0
+    ConstantValue: 0
+    Variable: {fileID: 11400000, guid: b51dfacb23a77964e9a7bc134cd266e5, type: 2}
+  AddHeatPerSecond:
+    UseConstant: 0
+    ConstantValue: 0
+    Variable: {fileID: 11400000, guid: 95ac0a8bf7ac8794db1b91679d276e0c, type: 2}
+  RemoveHeatPerSecond:
+    UseConstant: 0
+    ConstantValue: 0
+    Variable: {fileID: 11400000, guid: 5a2c9fd3252f34b42aa6b2e3dda05e02, type: 2}
+  StandardHeatLoss:
+    UseConstant: 0
+    ConstantValue: 0
+    Variable: {fileID: 11400000, guid: 2c406b51f3d733e41beed9910734315c, type: 2}
+  Heat:
+    UseConstant: 0
+    ConstantValue: 0
+    Variable: {fileID: 11400000, guid: 74ae59fd771a84d4aa4d53043068182f, type: 2}
+  UpwardVelocity:
+    UseConstant: 0
+    ConstantValue: 0
+    Variable: {fileID: 11400000, guid: 1c27c139c1b780c4fb49c05bec573189, type: 2}
+  MaxUpwardVelocity:
+    UseConstant: 0
+    ConstantValue: 0
+    Variable: {fileID: 11400000, guid: 059941661c3a1f743bdd9679236fc44f, type: 2}
+  HorizontalSpeed:
+    UseConstant: 0
+    ConstantValue: 0
+    Variable: {fileID: 11400000, guid: 25acc283597e4b848a1914eef0d6c2aa, type: 2}
+  BalloonTop: {fileID: 3347890530045408122}
+  CollisionCheckDistance:
+    UseConstant: 0
+    ConstantValue: 0
+    Variable: {fileID: 11400000, guid: 40b78730fefeea84f8919192644fca4d, type: 2}
+--- !u!114 &8473860508436017911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8012792350125822501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e9ced0bea7befc44aa17db7f3955ba9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SwordPoint: {fileID: 923308824}
+  Sword: {fileID: 899338444}
+  StabCooldown:
+    UseConstant: 0
+    ConstantValue: 0
+    Variable: {fileID: 11400000, guid: 970c56e8e35723346b372c217c50b2f8, type: 2}
+  PlayerBalloonPosition: {fileID: 11400000, guid: 3ebe538d08bf208489ac3cee351c30fd,
+    type: 2}
+  StabDistance:
+    UseConstant: 0
+    ConstantValue: 0
+    Variable: {fileID: 11400000, guid: 557ecc9ff5942204c960fbdad6497cc9, type: 2}
+--- !u!114 &5066535952429860995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8012792350125822501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd99c50348a4d2040878c062dd807c05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HolePrefab: {fileID: 11400000, guid: ec2a1891ea12495419284d9d88f1ca3f, type: 2}
+  MaxHoles: {fileID: 11400000, guid: d630ede4d4c16ab4cb1ffce67f882e02, type: 2}
+  Heat:
+    UseConstant: 0
+    ConstantValue: 0
+    Variable: {fileID: 11400000, guid: 74ae59fd771a84d4aa4d53043068182f, type: 2}
+  HoleHeatLoss:
+    UseConstant: 0
+    ConstantValue: 0
+    Variable: {fileID: 11400000, guid: 83c0cb4949715c94f878a31bcd0cc0a6, type: 2}
+  TimeForHoleFix:
+    UseConstant: 0
+    ConstantValue: 0
+    Variable: {fileID: 11400000, guid: 98e03ec7849160d47aaabe03090705fa, type: 2}
+  WaitForFix:
+    UseConstant: 0
+    ConstantValue: 0
+    Variable: {fileID: 11400000, guid: 4f43e0f905bf5db489e1426537715399, type: 2}
+--- !u!114 &1725478964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8012792350125822501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59f67336efb510f4c94b1f4ab19222d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   BalloonPart: {fileID: 8012792349514634769}
-  FirePart: {fileID: 8012792349786943254}
-  Sword: {fileID: 899338444}
-  SwordPoint: {fileID: 923308824}
-  UpwardVelocity: 3
-  MaxUpwardVelocity: 2
-  HorizontalSpeed: 1
-  MaxHeat: 3
-  AddHeatPerSecond: 4
-  RemoveHeatPerSecond: 4
-  StandardHeatLoss: 1
-  HoleHeatLoss: 3
-  TimeForHoleFix: 3
-  StabCooldown: 1
-  MaxHoles: 3
-  WaitForFix: 1
-  StabDistance: 5
+  BalloonPartPosition: {fileID: 11400000, guid: c1dfc09bb643f1a43bca319c9152df3a,
+    type: 2}

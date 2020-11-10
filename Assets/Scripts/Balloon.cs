@@ -33,7 +33,6 @@ public class Balloon : MonoBehaviour
     protected bool grounded = false;
     protected List<GameObject> stabs;
     protected float stabbedCooldown = 0f;
-    protected GameObject fixingHole;
     protected bool stabbing = false;
 
 
@@ -55,9 +54,6 @@ public class Balloon : MonoBehaviour
             foreach(GameObject go in stabs) {
                 Heat -= HoleHeatLoss * Time.deltaTime;
             }
-
-            if(fixingHole != null)
-                Heat -= HoleHeatLoss * Time.deltaTime;
         }
 
         FirePart.transform.localScale = (Heat / MaxHeat) * 1.5f * Vector3.one;
@@ -109,14 +105,7 @@ public class Balloon : MonoBehaviour
         Destroy(hole);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision) {
-        if (!collision.collider.CompareTag("Swordpoint") || stabbedCooldown > 0f)
-            return;
-
-        Stabbed(collision.GetContact(0).point);
-    }
-
-    protected void Stabbed(Vector3 pos) {
+    public void Stabbed(Vector3 pos) {
         if (stabs.Count >= MaxHoles)
             return;
 
