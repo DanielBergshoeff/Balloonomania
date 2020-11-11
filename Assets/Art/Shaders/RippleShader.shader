@@ -6,6 +6,11 @@
         _DispTex("Displacement", 2D) = "grey" {}
 		_Transparency("Transparency", float) = 0.25
 		_DisplaceAmount("DisplaceAmount", float) = 0.25
+		_Distance("Distance", float) = 1
+		_Amplitude("Amplitude", float) = 1
+		_Speed("Speed", float) = 1
+		_Amount("Amount", float) = 1
+
     }
     Subshader
     {
@@ -37,7 +42,19 @@
             float4 _DispTex_ST;
 			float _Transparency;
 			float _DisplaceAmount;
+			float _Distance;
+			float _Amplitude;
+			float _Speed;
+			float _Amount;
  
+
+			struct appdata
+            {
+                float4 vertex : POSITION;
+                float2 uv : TEXCOORD0;
+            };
+
+
             struct v2f
             {
                 float4 vertex : SV_POSITION;
@@ -47,9 +64,10 @@
 
 
 
-            v2f vert(float4 vertex:POSITION, float2 uv : TEXCOORD0)
+            v2f vert( appdata v)
             {
                 v2f i;
+				v.vertex.y += _Amount;
                 i.vertex = UnityObjectToClipPos(vertex);
                 i.uv = TRANSFORM_TEX(uv, _MainTex);
                 return i;
