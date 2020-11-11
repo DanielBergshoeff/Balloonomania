@@ -12,4 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44da5d7e4cc1ae84982256bf1f722590, type: 3}
   m_Name: Taunts
   m_EditorClassIdentifier: 
-  Value: []
+  Value:
+  - {fileID: 21300000, guid: 3153e00cc5f285b40ab3a6ee81679e41, type: 3}
+  - {fileID: 21300000, guid: a1dae23a27e8cea43b42536beda7fb2c, type: 3}
+  - {fileID: 21300000, guid: 078e284ff31ba9c40bbb237f59c6673e, type: 3}
+  - {fileID: 21300000, guid: 1ae9e184381dff74d822c0ef8698202d, type: 3}
+  - {fileID: 21300000, guid: 843a21c771eccdb489deef053d726110, type: 3}
+  - {fileID: 21300000, guid: fe463f69aa46c3a479b2e155f5be8977, type: 3}
+  - {fileID: 21300000, guid: 34b328ccaac49a94694974a1bf019a45, type: 3}
+  - {fileID: 21300000, guid: 072ecfaf876cce94193628e3fcb11ff7, type: 3}
+  - {fileID: 21300000, guid: 17a7db4047f02d44aae0aa50b295e191, type: 3}
+  - {fileID: 21300000, guid: 8fe5f74fa27b8994da5f12cf38ada3f8, type: 3}

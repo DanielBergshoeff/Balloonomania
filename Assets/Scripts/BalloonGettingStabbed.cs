@@ -11,6 +11,8 @@ public class BalloonGettingStabbed : MonoBehaviour
     public FloatReference HoleHeatLoss;
     public FloatReference TimeForHoleFix;
 
+    public GameEventBalloonInfo TauntEvent;
+
     protected List<GameObject> stabs;
     protected List<GameObject> fixingStabs;
     protected float stabbedCooldown = 0f;
@@ -48,6 +50,8 @@ public class BalloonGettingStabbed : MonoBehaviour
         go.transform.rotation = Quaternion.LookRotation(-normal, Vector3.up);
         go.transform.parent = transform;
         stabs.Add(go);
+
+        Invoke("CallTaunt", 1f);
     }
 
     protected IEnumerator FixHole(GameObject hole) {
@@ -59,5 +63,9 @@ public class BalloonGettingStabbed : MonoBehaviour
 
         fixingStabs.Remove(hole);
         Destroy(hole);
+    }
+
+    private void CallTaunt() {
+        TauntEvent.Raise(GetComponent<BalloonInfo>());
     }
 }
