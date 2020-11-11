@@ -29,7 +29,7 @@ public class BalloonStabbing : MonoBehaviour
                 BalloonGettingStabbed bgs = hit.collider.GetComponentInParent<BalloonGettingStabbed>();
                 if (bgs != null) {
                     EndStab();
-                    bgs.Stabbed(hit.point);
+                    bgs.Stabbed(hit.point, hit.normal);
                 }
             }
         }

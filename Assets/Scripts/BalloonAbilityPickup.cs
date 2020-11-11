@@ -44,11 +44,15 @@ public class BalloonAbilityPickup : MonoBehaviour
 
         if (!throwing) return;
 
-        Vector3 startPosWorld = Camera.main.ScreenToWorldPoint(startPos);
-        Vector3 mPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        /*hook.transform.LookAt(new Vector3(mPos.x, mPos.y, 0f));*/
+        float z_plane = 3.5f;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Vector3 mPos = ray.origin + ray.direction * (z_plane - ray.origin.z) / ray.direction.z;
+
+        Ray ray2 = Camera.main.ScreenPointToRay(startPos);
+        Vector3 startPosWorld = ray2.origin + ray2.direction * (z_plane - ray2.origin.z) / ray2.direction.z;
 
         Vector3 dir = mPos - startPosWorld;
+        dir = new Vector3(dir.x, dir.y, hook.transform.position.z);
         if (dir != Vector3.zero) {
             Quaternion rot = Quaternion.LookRotation(dir, Vector3.up);
             hook.transform.rotation = rot;
@@ -107,6 +111,7 @@ public class BalloonAbilityPickup : MonoBehaviour
     }
 
     private void ThrowHit(BalloonInfo bi) {
+        Debug.Log("Throw hit");
         hookedBalloon = bi;
         Vector3 dir = bi.transform.position - transform.position;
         float dist = dir.magnitude;

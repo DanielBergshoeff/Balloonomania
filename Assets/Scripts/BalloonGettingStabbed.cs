@@ -37,7 +37,7 @@ public class BalloonGettingStabbed : MonoBehaviour
             stabbedCooldown -= Time.deltaTime;
     }
 
-    public void Stabbed(Vector3 pos) {
+    public void Stabbed(Vector3 pos, Vector3 normal) {
         if (stabs.Count >= MaxHoles.Value)
             return;
 
@@ -45,6 +45,7 @@ public class BalloonGettingStabbed : MonoBehaviour
 
         GameObject go = Instantiate(HolePrefab.Value);
         go.transform.position = new Vector3(pos.x, pos.y, go.transform.position.z);
+        go.transform.rotation = Quaternion.LookRotation(-normal, Vector3.up);
         go.transform.parent = transform;
         stabs.Add(go);
     }

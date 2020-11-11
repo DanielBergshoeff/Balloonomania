@@ -15,10 +15,11 @@ public class BalloonPlayerGettingStabbed : BalloonGettingStabbed
     }
 
     protected void TryFix() {
-        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit2D hit = Physics2D.GetRayIntersection(ray, Mathf.Infinity);
         if (hit.collider != null && hit.collider.CompareTag("Hole")) {
-            if (stabs.Contains(hit.collider.gameObject)) {
-                StartCoroutine(FixHole(hit.collider.gameObject));
+            if (stabs.Contains(hit.collider.transform.parent.gameObject)) {
+                StartCoroutine(FixHole(hit.collider.transform.parent.gameObject));
             }
         }
     }
