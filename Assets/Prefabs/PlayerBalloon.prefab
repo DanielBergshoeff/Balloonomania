@@ -793,6 +793,7 @@ MonoBehaviour:
     UseConstant: 0
     ConstantValue: 0
     Variable: {fileID: 11400000, guid: 98e03ec7849160d47aaabe03090705fa, type: 2}
+  TauntEvent: {fileID: 11400000, guid: 384f2f642dc0c0d46b96d18fef2c9139, type: 2}
 --- !u!114 &7221967282283908188
 MonoBehaviour:
   m_ObjectHideFlags: 0

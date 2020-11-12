@@ -11,6 +11,8 @@ public class BalloonGettingStabbed : MonoBehaviour
     public FloatReference HoleHeatLoss;
     public FloatReference TimeForHoleFix;
 
+    public GameEventBalloonInfo TauntEvent;
+
     protected List<GameObject> stabs;
     protected List<GameObject> fixingStabs;
     protected float stabbedCooldown = 0f;
@@ -37,7 +39,7 @@ public class BalloonGettingStabbed : MonoBehaviour
             stabbedCooldown -= Time.deltaTime;
     }
 
-    public void Stabbed(Vector3 pos) {
+    public void Stabbed(Vector3 pos, Vector3 normal) {
         if (stabs.Count >= MaxHoles.Value)
             return;
 
@@ -45,8 +47,11 @@ public class BalloonGettingStabbed : MonoBehaviour
 
         GameObject go = Instantiate(HolePrefab.Value);
         go.transform.position = new Vector3(pos.x, pos.y, go.transform.position.z);
+        go.transform.rotation = Quaternion.LookRotation(-normal, Vector3.up);
         go.transform.parent = transform;
         stabs.Add(go);
+
+        Invoke("CallTaunt", 1f);
     }
 
     protected IEnumerator FixHole(GameObject hole) {
@@ -58,5 +63,9 @@ public class BalloonGettingStabbed : MonoBehaviour
 
         fixingStabs.Remove(hole);
         Destroy(hole);
+    }
+
+    private void CallTaunt() {
+        TauntEvent.Raise(GetComponent<BalloonInfo>());
     }
 }
