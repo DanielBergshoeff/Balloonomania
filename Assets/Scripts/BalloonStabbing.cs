@@ -30,9 +30,14 @@ public class BalloonStabbing : MonoBehaviour
                 if (bgs != null) {
                     EndStab();
                     bgs.Stabbed(hit.point, hit.normal);
+                    PushAwayFromPoint();
                 }
             }
         }
+    }
+
+    private void PushAwayFromPoint() {
+        throw new System.NotImplementedException();
     }
 
     public void Stab() {
