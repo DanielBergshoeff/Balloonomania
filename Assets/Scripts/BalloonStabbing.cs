@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class BalloonStabbing : MonoBehaviour
 {
+    public GameEventBalloonStab StabEvent;
+
     [Header("References")]
     public Transform SwordPoint;
     public Transform Sword;
@@ -30,6 +32,12 @@ public class BalloonStabbing : MonoBehaviour
                 if (bgs != null) {
                     EndStab();
                     bgs.Stabbed(hit.point, hit.normal);
+                    BalloonStab bs = new BalloonStab();
+                    bs.BalloonStabbed = bgs.GetComponent<BalloonInfo>();
+                    bs.BalloonStabbing = GetComponent<BalloonInfo>();
+                    bs.StabPosition = hit.point;
+                    bs.StabNormal = hit.normal;
+                    StabEvent.Raise(bs);
                     PushAwayFromPoint();
                 }
             }

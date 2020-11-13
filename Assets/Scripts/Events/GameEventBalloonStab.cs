@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [CreateAssetMenu]
-public class GameEventBalloonStab : MonoBehaviour
+public class GameEventBalloonStab : ScriptableObject
 {
     /// <summary>
     /// The list of listeners that this event will notify if it is raised.
@@ -28,4 +28,5 @@ public class GameEventBalloonStab : MonoBehaviour
     }
 }
 
+[System.Serializable]
 public class BalloonStabEvent : UnityEvent<BalloonStab> { }

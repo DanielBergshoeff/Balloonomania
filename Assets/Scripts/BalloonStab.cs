@@ -8,4 +8,5 @@ public class BalloonStab
     public BalloonInfo BalloonStabbing;
     public BalloonInfo BalloonStabbed;
     public Vector3 StabPosition;
+    public Vector3 StabNormal;
 }

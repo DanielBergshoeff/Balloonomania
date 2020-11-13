@@ -373,6 +373,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27e68b76826568843a6814f508dc1f45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StabEvent: {fileID: 11400000, guid: 9c6f2e4f798013b418c8fdb8d2c97020, type: 2}
   SwordPoint: {fileID: 6023134319656547888}
   Sword: {fileID: 6023134319113469147}
   StabCooldown:

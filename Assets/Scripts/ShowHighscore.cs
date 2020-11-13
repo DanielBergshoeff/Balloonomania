@@ -15,6 +15,15 @@ public class ShowHighscore : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Highscore.Value += 1;
         HighscoreText.text = Highscore.Value.ToString();
+    }
+
+    public void OnStab(BalloonStab bs) {
+        if (bs.BalloonStabbed.IsPlayer)
+            Highscore.Value -= 100;
+
+        if (bs.BalloonStabbing.IsPlayer)
+            Highscore.Value += 100;
     }
 }

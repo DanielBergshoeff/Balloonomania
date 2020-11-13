@@ -18,17 +18,7 @@ public class SwordGuyTurnAround : MonoBehaviour
     
     void Update()
     {
-
-        Vector3 worldPosition;
-        Vector3 mousePos = Input.mousePosition;
-        mousePos.z = Camera.main.nearClipPlane + Mathf.Abs((Camera.main.transform.position.z - SwordTargetStartPos.z));
-        worldPosition = Camera.main.ScreenToWorldPoint(mousePos);
-
-
-        SwordTarget.transform.position = worldPosition;
-
-
-        if (SwordTarget.transform.localPosition.x > transform.position.x)
+        if (SwordTarget.transform.position.x > transform.position.x)
         {
             localScale.x = -1;
             transform.localScale = localScale;
@@ -38,8 +28,6 @@ public class SwordGuyTurnAround : MonoBehaviour
             localScale.x = 1;
             transform.localScale = localScale;
         }
-        
-       
     }
 }
 
