@@ -23,9 +23,6 @@ public class BalloonAbilityPickup : MonoBehaviour
     private float startTime;
 
     private Vector3 startPos;
-    private Vector3 previousPos;
-    private Vector3 totalPos;
-    private int amtPos;
 
     void Update()
     {
@@ -58,13 +55,9 @@ public class BalloonAbilityPickup : MonoBehaviour
             hook.transform.rotation = rot;
         }
 
-        totalPos += previousPos - Input.mousePosition;
-        amtPos++;
-
-        previousPos = Input.mousePosition;
-
         if (Input.GetMouseButtonUp(0)) {
-            ThrowEnd();
+            dir = new Vector3(dir.x, dir.y, 0f);
+            ThrowEnd(dir);
         }
     }
 
@@ -80,6 +73,8 @@ public class BalloonAbilityPickup : MonoBehaviour
         currentAbility = ap.MyAbility;
 
         Destroy(collision.gameObject);
+
+        AudioManager.PlaySound(Sound.Pickup);
     }
 
     private void OnHookPickup() {
@@ -96,18 +91,17 @@ public class BalloonAbilityPickup : MonoBehaviour
     private void ThrowStart() {
         throwing = true;
         startPos = Input.mousePosition;
-        previousPos = startPos;
-        amtPos = 0;
-        totalPos = Vector3.zero;
     }
 
-    private void ThrowEnd() {
+    private void ThrowEnd(Vector3 dir) {
         throwing = false;
         hook.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
-        float throwStrength = (totalPos / amtPos).magnitude;
-        hook.GetComponent<Rigidbody2D>().AddForce(hook.transform.forward * 10f * throwStrength);
+        float throwStrength = dir.magnitude;
+        hook.GetComponent<Rigidbody2D>().AddForce(hook.transform.forward * 50f * throwStrength);
         hook.transform.parent = null;
         postthrow = true;
+
+        AudioManager.PlaySound(Sound.ThrowHook);
     }
 
     private void ThrowHit(BalloonInfo bi) {
@@ -134,6 +128,8 @@ public class BalloonAbilityPickup : MonoBehaviour
         if(bi.GetComponent<BalloonAIStabbing>() != null) {
             bi.GetComponent<BalloonAIStabbing>().enabled = false;
         }
+
+        AudioManager.PlaySound(Sound.PullHook);
     }
 
     private void PullBalloon() {

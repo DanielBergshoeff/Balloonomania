@@ -39,6 +39,8 @@ public class TauntSystem : MonoBehaviour
         currentTaunts.Add(bit);
 
         StartCoroutine(RemoveTaunt(TauntLength.Value, bit));
+
+        AudioManager.PlaySound(Sound.Curse);
     }
 
     private Sprite GetRandomTaunt() {

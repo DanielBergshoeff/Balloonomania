@@ -797,6 +797,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e9ced0bea7befc44aa17db7f3955ba9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StabEvent: {fileID: 11400000, guid: 9c6f2e4f798013b418c8fdb8d2c97020, type: 2}
   SwordPoint: {fileID: 923308824}
   Sword: {fileID: 899338444}
   StabCooldown:
@@ -835,6 +836,7 @@ MonoBehaviour:
     UseConstant: 0
     ConstantValue: 0
     Variable: {fileID: 11400000, guid: 98e03ec7849160d47aaabe03090705fa, type: 2}
+  TauntEvent: {fileID: 0}
   WaitForFix:
     UseConstant: 0
     ConstantValue: 0
@@ -854,3 +856,4 @@ MonoBehaviour:
   BalloonPart: {fileID: 8012792349514634769}
   BalloonPartPosition: {fileID: 11400000, guid: c1dfc09bb643f1a43bca319c9152df3a,
     type: 2}
+  IsPlayer: 0

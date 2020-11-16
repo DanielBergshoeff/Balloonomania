@@ -15,6 +15,7 @@ public class BalloonPlayerStabbing : BalloonStabbing
         float z_plane = 3.5f;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         Vector3 mPos = ray.origin + ray.direction * (z_plane - ray.origin.z) / ray.direction.z;
-        Sword.LookAt(new Vector3(mPos.x, mPos.y, transform.position.z));
+        Sword.transform.position = mPos;
+        //Sword.LookAt(new Vector3(mPos.x, mPos.y, transform.position.z));
     }
 }

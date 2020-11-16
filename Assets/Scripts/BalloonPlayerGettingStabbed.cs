@@ -5,8 +5,7 @@ using UnityEngine;
 public class BalloonPlayerGettingStabbed : BalloonGettingStabbed
 {
     // Update is called once per frame
-    protected new void Update()
-    {
+    protected new void Update() {
         base.Update();
 
         if (Input.GetMouseButtonDown(1)) {
