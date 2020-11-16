@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de6469e2642b90e46a3b706e729f4733, type: 3}
+  m_Name: AllTaunts
+  m_EditorClassIdentifier: 
+  Value:
+  - {fileID: 11400000, guid: 10b3377e3020caa42821306f777d1b52, type: 2}
+  - {fileID: 11400000, guid: d39ca95ccb2f19f4f9582262a0e70ba3, type: 2}
+  - {fileID: 11400000, guid: 94d81e82879eeaa42a3010bad0fb8e2e, type: 2}
+  - {fileID: 11400000, guid: 1c3a164e57868da4c9d479de40a66079, type: 2}
+  - {fileID: 11400000, guid: 655de0ec00751fa4bad89c7f25c9bc35, type: 2}
+  - {fileID: 11400000, guid: c9aeec0e8c1981b469560687fd2fc7b9, type: 2}
+  - {fileID: 11400000, guid: e542bb331a1474b48aa8b1c5d79d5d13, type: 2}

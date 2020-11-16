@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Balloon
   - Swordpoint
+  - Hole
+  - Ability
   layers:
   - Default
   - TransparentFX
@@ -16,7 +18,7 @@ TagManager:
   - 
   - 
   - Interactables
-  - 
+  - Terrain
   - 
   - 
   - 
