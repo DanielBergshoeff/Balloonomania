@@ -15,19 +15,16 @@ public class GameManager : MonoBehaviour
     [Header("Random values")]
     public int MinSpeed = -3;
     public int MaxSpeed = 3;
+    public int TopLaneSpeed = 3;
 
     public float MinTimePerSwitch = 3f;
     public float MaxTimePerSwitch = 10f;
 
     public int MinForwardSegments = 2;
 
-    [Header("Pause menu")]
-    public GameObject PausePanel;
-
     [Header("Collision")]
     public LayerMask CollisionMask;
 
-    private bool paused = false;
     private int[] segments;
     private float[] timeTilSwitch;
     private ParticleSystem[] effects;
@@ -59,13 +56,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape)) {
-            if (!paused)
-                Pause();
-            else
-                UnPause();
-        }
-
         for (int i = 0; i < segments.Length; i++) {
             timeTilSwitch[i] -= Time.deltaTime;
             if (timeTilSwitch[i] <= 0f)
@@ -76,15 +66,27 @@ public class GameManager : MonoBehaviour
     }
 
     private void AssignNewSpeed(int segment) {
-        int val = Random.value < 0.5f ? 1 : -1;
-        if (segments[segment] + val == 0)
-            val = val * 2;
-        if(segments[segment] + val < 0) {
-            if (AmtOfForwardLanes() <= MinForwardSegments)
-                val = 0;
+        int val = 0;
+        if (segment == segments.Length - 1) {
+            val = Random.value < 0.5f ? TopLaneSpeed : -TopLaneSpeed;
+            segments[segment] = val;
         }
-        segments[segment] = Mathf.Clamp(segments[segment] + val , MinSpeed, MaxSpeed);
+        else {
+            val = Random.value < 0.5f ? 1 : -1;
+            if (segments[segment] + val == 0)
+                val = val * 2;
+            if (segments[segment] + val < 0) {
+                if (AmtOfForwardLanes() <= MinForwardSegments)
+                    val = 0;
+            }
+            segments[segment] = Mathf.Clamp(segments[segment] + val, MinSpeed, MaxSpeed);
+        }
         timeTilSwitch[segment] = Random.Range(MinTimePerSwitch, MaxTimePerSwitch);
+
+        UpdateLaneVisuals(segment);
+    }
+
+    private void UpdateLaneVisuals(int segment) {
         ParticleSystem.VelocityOverLifetimeModule vom = effects[segment].velocityOverLifetime;
         vom.x = segments[segment] * 3f;
 
@@ -138,21 +140,5 @@ public class GameManager : MonoBehaviour
         float dir = pos.y - (segment + topSpeed) * instance.SegmentSize;
 
         return dir;
-    }
-
-    public void Quit() {
-        AppHelper.Quit();
-    }
-
-    public void Pause() {
-        Time.timeScale = 0f;
-        PausePanel.SetActive(true);
-        paused = true;
-    }
-
-    public void UnPause() {
-        Time.timeScale = 1f;
-        PausePanel.SetActive(false);
-        paused = false;
     }
 }

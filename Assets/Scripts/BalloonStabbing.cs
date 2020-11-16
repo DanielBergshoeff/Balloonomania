@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class BalloonStabbing : MonoBehaviour
 {
+    public GameEventBalloonStab StabEvent;
+
     [Header("References")]
     public Transform SwordPoint;
     public Transform Sword;
@@ -14,6 +16,9 @@ public class BalloonStabbing : MonoBehaviour
 
     protected float stabCooldown = 0f;
     protected bool stabbing = false;
+
+    private float pushFromPoint = 0f;
+    private Vector3 pushPoint;
 
 
     // Update is called once per frame
@@ -30,14 +35,28 @@ public class BalloonStabbing : MonoBehaviour
                 if (bgs != null) {
                     EndStab();
                     bgs.Stabbed(hit.point, hit.normal);
-                    PushAwayFromPoint();
+                    BalloonStab bs = new BalloonStab();
+                    bs.BalloonStabbed = bgs.GetComponent<BalloonInfo>();
+                    bs.BalloonStabbing = GetComponent<BalloonInfo>();
+                    bs.StabPosition = hit.point;
+                    bs.StabNormal = hit.normal;
+                    StabEvent.Raise(bs);
+                    PushAwayFromPoint(hit.point);
                 }
             }
         }
+
+        if(pushFromPoint > 0f) {
+            pushFromPoint -= Time.deltaTime;
+            Vector3 dir = transform.position - pushPoint;
+            dir = new Vector3(dir.x, dir.y, 0f);
+            transform.position = transform.position + dir.normalized * pushFromPoint * Time.deltaTime * 10f;
+        }
     }
 
-    private void PushAwayFromPoint() {
-        throw new System.NotImplementedException();
+    private void PushAwayFromPoint(Vector3 point) {
+        pushPoint = point;
+        pushFromPoint = 1f;
     }
 
     public void Stab() {
@@ -49,6 +68,8 @@ public class BalloonStabbing : MonoBehaviour
         stabbing = true;
 
         Invoke("EndStab", 0.3f);
+
+        AudioManager.PlaySound(Sound.SwordStab);
     }
 
     protected void EndStab() {
