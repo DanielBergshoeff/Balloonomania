@@ -97,7 +97,7 @@ public class BalloonAbilityPickup : MonoBehaviour
         throwing = false;
         hook.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         float throwStrength = dir.magnitude;
-        hook.GetComponent<Rigidbody2D>().AddForce(hook.transform.forward * 30f * throwStrength);
+        hook.GetComponent<Rigidbody2D>().AddForce(hook.transform.forward * 50f * throwStrength);
         hook.transform.parent = null;
         postthrow = true;
 
