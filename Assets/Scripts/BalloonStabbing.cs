@@ -17,6 +17,9 @@ public class BalloonStabbing : MonoBehaviour
     protected float stabCooldown = 0f;
     protected bool stabbing = false;
 
+    private float pushFromPoint = 0f;
+    private Vector3 pushPoint;
+
 
     // Update is called once per frame
     protected void Update()
@@ -38,14 +41,22 @@ public class BalloonStabbing : MonoBehaviour
                     bs.StabPosition = hit.point;
                     bs.StabNormal = hit.normal;
                     StabEvent.Raise(bs);
-                    PushAwayFromPoint();
+                    PushAwayFromPoint(hit.point);
                 }
             }
         }
+
+        if(pushFromPoint > 0f) {
+            pushFromPoint -= Time.deltaTime;
+            Vector3 dir = transform.position - pushPoint;
+            dir = new Vector3(dir.x, dir.y, 0f);
+            transform.position = transform.position + dir.normalized * pushFromPoint * Time.deltaTime * 10f;
+        }
     }
 
-    private void PushAwayFromPoint() {
-        throw new System.NotImplementedException();
+    private void PushAwayFromPoint(Vector3 point) {
+        pushPoint = point;
+        pushFromPoint = 1f;
     }
 
     public void Stab() {

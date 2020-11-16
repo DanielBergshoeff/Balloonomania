@@ -54,7 +54,7 @@ public class BalloonGettingStabbed : MonoBehaviour
         stabbedCooldown = 0.5f;
 
         GameObject go = Instantiate(HolePrefab.Value);
-        go.transform.position = new Vector3(pos.x, pos.y, go.transform.position.z);
+        go.transform.position = new Vector3(pos.x, pos.y, transform.position.z - 0.1f);
         go.transform.rotation = Quaternion.LookRotation(-normal, Vector3.up);
         go.transform.parent = transform;
         stabs.Add(go);
