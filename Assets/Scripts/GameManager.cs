@@ -21,13 +21,9 @@ public class GameManager : MonoBehaviour
 
     public int MinForwardSegments = 2;
 
-    [Header("Pause menu")]
-    public GameObject PausePanel;
-
     [Header("Collision")]
     public LayerMask CollisionMask;
 
-    private bool paused = false;
     private int[] segments;
     private float[] timeTilSwitch;
     private ParticleSystem[] effects;
@@ -59,13 +55,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape)) {
-            if (!paused)
-                Pause();
-            else
-                UnPause();
-        }
-
         for (int i = 0; i < segments.Length; i++) {
             timeTilSwitch[i] -= Time.deltaTime;
             if (timeTilSwitch[i] <= 0f)
@@ -138,21 +127,5 @@ public class GameManager : MonoBehaviour
         float dir = pos.y - (segment + topSpeed) * instance.SegmentSize;
 
         return dir;
-    }
-
-    public void Quit() {
-        AppHelper.Quit();
-    }
-
-    public void Pause() {
-        Time.timeScale = 0f;
-        PausePanel.SetActive(true);
-        paused = true;
-    }
-
-    public void UnPause() {
-        Time.timeScale = 1f;
-        PausePanel.SetActive(false);
-        paused = false;
     }
 }

@@ -12,9 +12,7 @@ public class ShowHighscore : MonoBehaviour
         Highscore.Value = 0;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
+    private void FixedUpdate() {
         Highscore.Value += 1;
         HighscoreText.text = Highscore.Value.ToString();
     }
