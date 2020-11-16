@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     [Header("Random values")]
     public int MinSpeed = -3;
     public int MaxSpeed = 3;
+    public int TopLaneSpeed = 3;
 
     public float MinTimePerSwitch = 3f;
     public float MaxTimePerSwitch = 10f;
@@ -65,15 +66,27 @@ public class GameManager : MonoBehaviour
     }
 
     private void AssignNewSpeed(int segment) {
-        int val = Random.value < 0.5f ? 1 : -1;
-        if (segments[segment] + val == 0)
-            val = val * 2;
-        if(segments[segment] + val < 0) {
-            if (AmtOfForwardLanes() <= MinForwardSegments)
-                val = 0;
+        int val = 0;
+        if (segment == segments.Length - 1) {
+            val = Random.value < 0.5f ? TopLaneSpeed : -TopLaneSpeed;
+            segments[segment] = val;
         }
-        segments[segment] = Mathf.Clamp(segments[segment] + val , MinSpeed, MaxSpeed);
+        else {
+            val = Random.value < 0.5f ? 1 : -1;
+            if (segments[segment] + val == 0)
+                val = val * 2;
+            if (segments[segment] + val < 0) {
+                if (AmtOfForwardLanes() <= MinForwardSegments)
+                    val = 0;
+            }
+            segments[segment] = Mathf.Clamp(segments[segment] + val, MinSpeed, MaxSpeed);
+        }
         timeTilSwitch[segment] = Random.Range(MinTimePerSwitch, MaxTimePerSwitch);
+
+        UpdateLaneVisuals(segment);
+    }
+
+    private void UpdateLaneVisuals(int segment) {
         ParticleSystem.VelocityOverLifetimeModule vom = effects[segment].velocityOverLifetime;
         vom.x = segments[segment] * 3f;
 

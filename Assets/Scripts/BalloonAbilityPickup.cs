@@ -73,6 +73,8 @@ public class BalloonAbilityPickup : MonoBehaviour
         currentAbility = ap.MyAbility;
 
         Destroy(collision.gameObject);
+
+        AudioManager.PlaySound(Sound.Pickup);
     }
 
     private void OnHookPickup() {
@@ -98,6 +100,8 @@ public class BalloonAbilityPickup : MonoBehaviour
         hook.GetComponent<Rigidbody2D>().AddForce(hook.transform.forward * 30f * throwStrength);
         hook.transform.parent = null;
         postthrow = true;
+
+        AudioManager.PlaySound(Sound.ThrowHook);
     }
 
     private void ThrowHit(BalloonInfo bi) {
@@ -124,6 +128,8 @@ public class BalloonAbilityPickup : MonoBehaviour
         if(bi.GetComponent<BalloonAIStabbing>() != null) {
             bi.GetComponent<BalloonAIStabbing>().enabled = false;
         }
+
+        AudioManager.PlaySound(Sound.PullHook);
     }
 
     private void PullBalloon() {

@@ -261,6 +261,7 @@ MonoBehaviour:
     UseConstant: 0
     ConstantValue: 0
     Variable: {fileID: 11400000, guid: 25acc283597e4b848a1914eef0d6c2aa, type: 2}
+  PlayerFlyingEvent: {fileID: 11400000, guid: 5ea308ff8e575e3408b8c9fdca0132f5, type: 2}
 --- !u!114 &862612976
 MonoBehaviour:
   m_ObjectHideFlags: 0

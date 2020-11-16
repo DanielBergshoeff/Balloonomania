@@ -17,10 +17,18 @@ public class BalloonGettingStabbed : MonoBehaviour
     protected List<GameObject> fixingStabs;
     protected float stabbedCooldown = 0f;
 
+    private AudioSource deflateSoundSource;
+
     protected void Awake()
     {
         stabs = new List<GameObject>();
         fixingStabs = new List<GameObject>();
+    }
+
+    private void Start() {
+        deflateSoundSource = gameObject.AddComponent<AudioSource>();
+        deflateSoundSource.clip = AudioManager.GetSound(Sound.Deflate);
+        deflateSoundSource.loop = true;
     }
 
     // Update is called once per frame
@@ -52,9 +60,13 @@ public class BalloonGettingStabbed : MonoBehaviour
         stabs.Add(go);
 
         Invoke("CallTaunt", 1f);
+
+        deflateSoundSource.Play();
     }
 
     protected IEnumerator FixHole(GameObject hole) {
+        AudioManager.PlaySound(Sound.Repair);
+
         stabs.Remove(hole);
         fixingStabs.Add(hole);
         hole.transform.DOScale(0f, TimeForHoleFix.Value);
@@ -63,6 +75,10 @@ public class BalloonGettingStabbed : MonoBehaviour
 
         fixingStabs.Remove(hole);
         Destroy(hole);
+
+        if(fixingStabs.Count == 0 && stabs.Count == 0) {
+            deflateSoundSource.Stop();
+        }
     }
 
     private void CallTaunt() {

@@ -57,6 +57,8 @@ public class BalloonStabbing : MonoBehaviour
         stabbing = true;
 
         Invoke("EndStab", 0.3f);
+
+        AudioManager.PlaySound(Sound.SwordStab);
     }
 
     protected void EndStab() {

@@ -18,10 +18,14 @@ public class ShowHighscore : MonoBehaviour
     }
 
     public void OnStab(BalloonStab bs) {
-        if (bs.BalloonStabbed.IsPlayer)
+        if (bs.BalloonStabbed.IsPlayer) {
             Highscore.Value -= 100;
+            AudioManager.PlaySound(Sound.SubtractScore);
+        }
 
-        if (bs.BalloonStabbing.IsPlayer)
+        if (bs.BalloonStabbing.IsPlayer) {
             Highscore.Value += 100;
+            AudioManager.PlaySound(Sound.AddScore);
+        }
     }
 }

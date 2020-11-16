@@ -19,13 +19,16 @@ public class BalloonFlyingAI : BalloonFlying
         int coll = CheckForCollision();
         if (coll == 1)
             ApplyHeat();
-        else if (coll == -1)
+        else if (coll == -1) {
+            StopHeat();
             RemoveHeat();
+        }
         else {
             if (GameManager.GetDirection(transform.position, 1) < 0f) {
                 ApplyHeat();
             }
             else {
+                StopHeat();
                 RemoveHeat();
             }
         }

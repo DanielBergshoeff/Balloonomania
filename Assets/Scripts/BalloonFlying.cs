@@ -22,10 +22,18 @@ public class BalloonFlying : MonoBehaviour
 
     protected Rigidbody2D myRigidbody;
     protected bool grounded;
+    private AudioSource myAudioSource;
+    private bool heating = false;
 
     private void Awake() {
         myRigidbody = GetComponent<Rigidbody2D>();
         Heat.Value = 0f;
+        myAudioSource = gameObject.AddComponent<AudioSource>();
+    }
+
+    private void Start() {
+        myAudioSource.clip = AudioManager.GetSound(Sound.Ascend);
+        myAudioSource.loop = true;
     }
 
     // Update is called once per frame
@@ -50,6 +58,17 @@ public class BalloonFlying : MonoBehaviour
     protected void ApplyHeat() {
         if (Heat.Value < MaxHeat.Value) {
             Heat.Value += AddHeatPerSecond.Value * Time.deltaTime;
+            if (!heating) {
+                myAudioSource.Play();
+                heating = true;
+            }
+        }
+    }
+
+    protected void StopHeat() {
+        if (heating) {
+            myAudioSource.Stop();
+            heating = false;
         }
     }
 

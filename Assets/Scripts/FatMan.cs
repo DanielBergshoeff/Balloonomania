@@ -10,6 +10,15 @@ public class FatMan : MonoBehaviour
     public IntVariable Score; 
 
     private float speed = 1f;
+    private AudioSource myAudioSource;
+
+    private void Awake() {
+        myAudioSource = gameObject.AddComponent<AudioSource>();
+        myAudioSource.spatialBlend = 1f;
+        myAudioSource.clip = AudioManager.GetSound(Sound.FatMan);
+        myAudioSource.loop = true;
+        myAudioSource.Play();
+    }
 
     // Update is called once per frame
     void Update()
@@ -29,5 +38,7 @@ public class FatMan : MonoBehaviour
             Score.Value += 1000;
             speed = 1f;
         }
+
+        AudioManager.PlaySound(Sound.Squashed);
     }
 }

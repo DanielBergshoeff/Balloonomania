@@ -10,6 +10,7 @@ public class EndScreen : MonoBehaviour
     public void EndGame() {
         Screen.SetActive(true);
         Time.timeScale = 0f;
+        AudioManager.PlaySound(Sound.GameFinished);
     }
 
     public void StartOver() {
