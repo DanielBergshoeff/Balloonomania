@@ -43,16 +43,18 @@ public class BalloonFlying : MonoBehaviour
             Heat.Value -= StandardHeatLoss.Value * Time.deltaTime;
         }
 
+        grounded = Physics2D.Raycast(transform.position - transform.up * 0.01f, -transform.up, 0.15f).collider != null;
+        if (!grounded)
+            transform.position = transform.position + transform.right * Time.deltaTime * HorizontalSpeed.Value * GameManager.GetSpeed(BalloonPartPosition.Value);
+    }
+
+    protected void FixedUpdate() {
         myRigidbody.AddForce(transform.up * Heat.Value * UpwardVelocity.Value);
 
         if (myRigidbody.velocity.magnitude > MaxUpwardVelocity.Value) {
             Vector2 vel = myRigidbody.velocity.normalized;
             myRigidbody.velocity = vel * MaxUpwardVelocity.Value;
         }
-
-        grounded = Physics2D.Raycast(transform.position - transform.up * 0.01f, -transform.up, 0.15f).collider != null;
-        if (!grounded)
-            transform.position = transform.position + transform.right * Time.deltaTime * HorizontalSpeed.Value * GameManager.GetSpeed(BalloonPartPosition.Value);
     }
 
     protected void ApplyHeat() {
