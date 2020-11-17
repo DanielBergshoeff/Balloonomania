@@ -8,6 +8,7 @@ public class FatMan : MonoBehaviour
     public FloatReference SpeedIncreaseExponential;
     public FloatReference SpeedIncreaseLinear;
     public GameEvent EndGameEvent;
+    public ZoomEvent MyZoomEvent;
     public IntVariable Score; 
 
     private float speed = 1f;
@@ -39,6 +40,7 @@ public class FatMan : MonoBehaviour
         else {
             Score.Value += 1000;
             speed = 1f;
+            MyZoomEvent.Raise(new Zoom(transform, -5f, 1f));
         }
 
         AudioManager.PlaySound(Sound.Squashed);

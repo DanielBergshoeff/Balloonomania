@@ -84,6 +84,11 @@ public class GameManager : MonoBehaviour
         timeTilSwitch[segment] = Random.Range(MinTimePerSwitch, MaxTimePerSwitch);
 
         UpdateLaneVisuals(segment);
+
+        int playerSegment = (int)(PlayerBalloonPosition.Value.y / instance.SegmentSize);
+        if (playerSegment == segment) {
+            AudioManager.PlaySound(val > 0 ? Sound.WindFaster : Sound.WindSlower);
+        }
     }
 
     private void UpdateLaneVisuals(int segment) {
