@@ -5,7 +5,8 @@ using UnityEngine;
 public class FatMan : MonoBehaviour
 {
     public Vector3Variable PlayerBalloonPosition;
-    public FloatReference SpeedIncrease;
+    public FloatReference SpeedIncreaseExponential;
+    public FloatReference SpeedIncreaseLinear;
     public GameEvent EndGameEvent;
     public IntVariable Score; 
 
@@ -23,7 +24,8 @@ public class FatMan : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        speed = speed * SpeedIncrease.Value;
+        speed = speed * SpeedIncreaseExponential.Value;
+        speed += Time.deltaTime * SpeedIncreaseLinear.Value;
         transform.position = transform.position + transform.right * Time.deltaTime * speed;
     }
 
