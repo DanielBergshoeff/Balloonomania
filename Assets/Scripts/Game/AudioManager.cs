@@ -55,6 +55,7 @@ public enum Sound
     Ascend,
     SwordStab,
     Deflate,
+    BalloonPop,
     Repair,
     Curse,
     Pickup,
