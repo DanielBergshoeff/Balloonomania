@@ -29,6 +29,7 @@ public class BalloonFlying : MonoBehaviour
         myRigidbody = GetComponent<Rigidbody2D>();
         Heat.Value = 0f;
         myAudioSource = gameObject.AddComponent<AudioSource>();
+        myAudioSource.spatialBlend = 1;
     }
 
     private void Start() {

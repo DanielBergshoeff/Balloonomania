@@ -10,11 +10,19 @@ public class AudioManager : MonoBehaviour
     public List<SoundToClip> AllClips;
 
     private AudioSource myAudioSource;
+    private AudioSource ambientAudioSource;
 
     void Awake()
     {
         Instance = this;
         myAudioSource = GetComponent<AudioSource>();
+        ambientAudioSource = gameObject.AddComponent<AudioSource>();
+    }
+
+    private void Start() {
+        ambientAudioSource.clip = GetSound(Sound.Ambient);
+        ambientAudioSource.loop = true;
+        ambientAudioSource.Play();
     }
 
     public static AudioClip GetSound(Sound soundToPlay) {
@@ -58,7 +66,8 @@ public enum Sound
     Squashed,
     Ambient,
     GameFinished,
-    WindChange
+    WindSlower,
+    WindFaster
 }
 
 [System.Serializable]
