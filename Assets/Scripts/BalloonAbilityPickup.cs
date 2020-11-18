@@ -7,6 +7,7 @@ public class BalloonAbilityPickup : MonoBehaviour
     public GameObjectVariable HookPrefab;
     public FloatReference HookMovePercentage;
     public FloatReference HookMoveDuration;
+    public GameEvent PickupEvent;
 
     private Ability currentAbility;
     private GameObject hook;
@@ -86,6 +87,8 @@ public class BalloonAbilityPickup : MonoBehaviour
         h.HookHitEvent = new BalloonEvent();
         h.HookHitEvent.AddListener(ThrowHit);
         postthrow = false;
+
+        PickupEvent.Raise();
     }
 
     private void ThrowStart() {

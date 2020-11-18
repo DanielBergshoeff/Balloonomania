@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ParticlePrefab: {fileID: 4039497202911513181, guid: ce6ad2e1a61144a48b3aa74728d96dc8,
     type: 3}
+  PlayerStabbed: {fileID: 11400000, guid: 7ff4b9745d4f48d419a53beb35f54c85, type: 2}
 --- !u!114 &8092970850489259039
 MonoBehaviour:
   m_ObjectHideFlags: 0
