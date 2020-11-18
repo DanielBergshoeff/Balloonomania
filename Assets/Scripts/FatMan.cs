@@ -9,7 +9,9 @@ public class FatMan : MonoBehaviour
     public FloatReference SpeedIncreaseLinear;
     public GameEvent EndGameEvent;
     public ZoomEvent MyZoomEvent;
-    public IntVariable Score; 
+    public IntVariable Score;
+
+    public GameObject AIPrefab;
 
     private float speed = 1f;
     private AudioSource myAudioSource;
@@ -41,8 +43,22 @@ public class FatMan : MonoBehaviour
             Score.Value += 1000;
             speed = 1f;
             MyZoomEvent.Raise(new Zoom(transform, -5f, 1f));
+
+            BalloonFlying bf = collision.collider.GetComponentInParent<BalloonFlying>();
+            if(bf != null)
+                bf.enabled = false;
+
+            StartCoroutine(RespawnAI(collision.collider.transform.parent.gameObject, 5f));
         }
 
         AudioManager.PlaySound(Sound.Squashed);
+    }
+
+    private IEnumerator RespawnAI(GameObject currentAI, float time) {
+        yield return new WaitForSeconds(time);
+
+        Destroy(currentAI);
+        GameObject go = Instantiate(AIPrefab);
+        go.transform.position = PlayerBalloonPosition.Value + Vector3.right * 30f;
     }
 }

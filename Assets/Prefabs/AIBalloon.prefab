@@ -478,6 +478,12 @@ MonoBehaviour:
     ConstantValue: 0
     Variable: {fileID: 11400000, guid: 40b78730fefeea84f8919192644fca4d, type: 2}
   CheckLanesPerSide: {fileID: 11400000, guid: d71b2a0c50034b74b987dd9a2bb6c4ee, type: 2}
+  MaxDistancePlayer:
+    UseConstant: 0
+    ConstantValue: 0
+    Variable: {fileID: 11400000, guid: eb8ef19e92710dd4dbcaa3e6b4447969, type: 2}
+  PlayerBalloonPosition: {fileID: 11400000, guid: 3ebe538d08bf208489ac3cee351c30fd,
+    type: 2}
 --- !u!114 &8473860508436017911
 MonoBehaviour:
   m_ObjectHideFlags: 0

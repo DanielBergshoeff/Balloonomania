@@ -107,6 +107,7 @@ MonoBehaviour:
     ConstantValue: 0
     Variable: {fileID: 11400000, guid: f54407e4c06059f43b211be9ffa55a78, type: 2}
   EndGameEvent: {fileID: 11400000, guid: 53d20de0d97c11746885fab2ff4875d2, type: 2}
+  MyZoomEvent: {fileID: 11400000, guid: c9ad4285a57085b4b87eaf18317e9e52, type: 2}
   Score: {fileID: 11400000, guid: 2fff8591c90e09c418753cdc4d80597b, type: 2}
 --- !u!61 &6307915542189243401
 BoxCollider2D:
