@@ -70,9 +70,9 @@ MonoBehaviour:
   - MySound: 11
     MyClip: {fileID: 8300000, guid: 37e1e7bb5031aab46966665802100f67, type: 3}
   - MySound: 12
-    MyClip: {fileID: 8300000, guid: 5883cba4c72c99f4890265735dd4b999, type: 3}
-  - MySound: 13
     MyClip: {fileID: 0}
+  - MySound: 13
+    MyClip: {fileID: 8300000, guid: 5883cba4c72c99f4890265735dd4b999, type: 3}
   - MySound: 14
     MyClip: {fileID: 8300000, guid: 01703d2a74a2f1d44822a8a78aafd7eb, type: 3}
   - MySound: 15
