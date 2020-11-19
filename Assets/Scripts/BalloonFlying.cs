@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class BalloonFlying : MonoBehaviour
 {
@@ -30,8 +31,13 @@ public class BalloonFlying : MonoBehaviour
     private void Awake() {
         myRigidbody = GetComponent<Rigidbody2D>();
         Heat.Value = 0f;
+
+        AudioMixer mixer = Resources.Load("Main") as AudioMixer;
+        AudioMixerGroup amx = mixer.FindMatchingGroups("Balloon")[0];
+
         myAudioSource = gameObject.AddComponent<AudioSource>();
         myAudioSource.spatialBlend = 1;
+        myAudioSource.outputAudioMixerGroup = amx;
     }
 
     private void Start() {
