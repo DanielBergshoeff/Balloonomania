@@ -6,6 +6,7 @@ public class BalloonFlying : MonoBehaviour
 {
     [Header("References")]
     public Vector3Variable BalloonPartPosition;
+    public Transform Fire;
 
     [Header("Heat information")]
     public FloatReference MaxHeat;
@@ -43,6 +44,8 @@ public class BalloonFlying : MonoBehaviour
         if (Heat.Value > 0f) {
             Heat.Value -= StandardHeatLoss.Value * Time.deltaTime;
         }
+
+        Fire.transform.localScale = Vector3.one * (Heat.Value / MaxHeat.Value);
 
         grounded = Physics2D.Raycast(transform.position - transform.up * 0.01f, -transform.up, 0.15f).collider != null;
         if (!grounded)

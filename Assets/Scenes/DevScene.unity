@@ -2723,12 +2723,12 @@ PrefabInstance:
     - target: {fileID: 8481583721444173364, guid: 13701bf279103ff44b10090999dfffc9,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 35.85
+      value: 10.08
       objectReference: {fileID: 0}
     - target: {fileID: 8481583721444173364, guid: 13701bf279103ff44b10090999dfffc9,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.4
+      value: 7.33
       objectReference: {fileID: 0}
     - target: {fileID: 8481583721444173364, guid: 13701bf279103ff44b10090999dfffc9,
         type: 3}
@@ -8460,12 +8460,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tutorial
       objectReference: {fileID: 0}
-    - target: {fileID: 5419790021557525001, guid: 192d4be2c8b017148b85d53d0c2b566a,
-        type: 3}
-      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
-      value: 
-      objectReference: {fileID: 21300000, guid: cd117fc2c7a50df4a9e1431e3d1edce3,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 192d4be2c8b017148b85d53d0c2b566a, type: 3}
 --- !u!1001 &4970038487884818270

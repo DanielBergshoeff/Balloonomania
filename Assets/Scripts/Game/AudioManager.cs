@@ -25,6 +25,24 @@ public class AudioManager : MonoBehaviour
         ambientAudioSource.Play();
     }
 
+    public static AudioClip GetRandomSound(Sound soundToPlay) {
+        if (Instance == null || Instance.AllClips == null)
+            return null;
+
+        List<AudioClip> tempList = new List<AudioClip>();
+        foreach (SoundToClip stc in Instance.AllClips) {
+            if (stc.MySound == soundToPlay) {
+                tempList.Add(stc.MyClip);
+            }
+        }
+
+        if (tempList.Count == 0)
+            return null;
+        else {
+            return tempList[Random.Range(0, tempList.Count)];
+        }
+    }
+
     public static AudioClip GetSound(Sound soundToPlay) {
         if (Instance == null || Instance.AllClips == null)
             return null;
@@ -39,14 +57,11 @@ public class AudioManager : MonoBehaviour
     }
 
     public static void PlaySound(Sound soundToPlay) {
-        if (Instance == null || Instance.AllClips == null)
-            return;
+        Instance.myAudioSource.PlayOneShot(GetSound(soundToPlay));
+    }
 
-        foreach (SoundToClip stc in Instance.AllClips) {
-            if (stc.MySound == soundToPlay) {
-                Instance.myAudioSource.PlayOneShot(stc.MyClip);
-            }
-        }
+    public static void PlayRandomSound(Sound soundToPlay) {
+        Instance.myAudioSource.PlayOneShot(GetRandomSound(soundToPlay));
     }
 }
 
@@ -68,7 +83,9 @@ public enum Sound
     Ambient,
     GameFinished,
     WindSlower,
-    WindFaster
+    WindFaster,
+    SwordStabShout,
+    ItemGetShout
 }
 
 [System.Serializable]
