@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 [RequireComponent(typeof(AudioSource))]
 public class AudioManager : MonoBehaviour
@@ -15,8 +16,15 @@ public class AudioManager : MonoBehaviour
     void Awake()
     {
         Instance = this;
+
+        AudioMixer mixer = Resources.Load("Main") as AudioMixer;
+        AudioMixerGroup amx = mixer.FindMatchingGroups("Rest")[0];
+
         myAudioSource = GetComponent<AudioSource>();
         ambientAudioSource = gameObject.AddComponent<AudioSource>();
+
+        myAudioSource.outputAudioMixerGroup = amx;
+        ambientAudioSource.outputAudioMixerGroup = amx;
     }
 
     private void Start() {
