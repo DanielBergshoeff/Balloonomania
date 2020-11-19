@@ -16,7 +16,7 @@ public class StabEffect : MonoBehaviour
     }
 
     public void OnStab(BalloonStab balloonStab) {
-        myAudioSource.PlayOneShot(AudioManager.GetSound(Sound.BalloonPop));
+        AudioManager.PlaySound(Sound.BalloonPop);
         GameObject go = Instantiate(ParticlePrefab);
         go.transform.position = balloonStab.StabPosition;
 

@@ -70,6 +70,7 @@ public class BalloonStabbing : MonoBehaviour
         Invoke("EndStab", 0.3f);
 
         AudioManager.PlaySound(Sound.SwordStab);
+        AudioManager.PlayRandomSound(Sound.SwordStabShout);
     }
 
     protected void EndStab() {

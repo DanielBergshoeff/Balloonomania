@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3811744178527662592}
   - component: {fileID: 3811744178527662595}
   - component: {fileID: 3811744178527662594}
+  - component: {fileID: 7647400261585472329}
   m_Layer: 0
   m_Name: ScoreManager
   m_TagString: Untagged
@@ -45,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9034c09b0e7b98444ad20d475fcde4e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ScoreEvent: {fileID: 11400000, guid: f50e8e7f40db702429fd5ef0c8a0baa6, type: 2}
   Highscore: {fileID: 11400000, guid: 2fff8591c90e09c418753cdc4d80597b, type: 2}
   HighscoreText: {fileID: 3811744180479781260}
 --- !u!114 &3811744178527662594
@@ -65,6 +67,33 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3811744178527662595}
         m_MethodName: OnStab
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &7647400261585472329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3811744178527662597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 999ee592d0d45d14b88472c4f02951a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: f50e8e7f40db702429fd5ef0c8a0baa6, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3811744178527662595}
+        m_MethodName: OnAddPoints
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

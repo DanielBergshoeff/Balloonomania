@@ -42,7 +42,7 @@ public class TauntSystem : MonoBehaviour
         StartCoroutine(RemoveTaunt(TauntLength.Value, bit));
         //MyZoomEvent.Raise(new Zoom(go.transform, 10f, 1f));
 
-        AudioManager.PlaySound(Sound.Curse);
+        AudioManager.PlayRandomSound(Sound.Curse);
     }
 
     private Sprite GetRandomTaunt() {

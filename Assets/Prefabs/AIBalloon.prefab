@@ -440,6 +440,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BalloonPartPosition: {fileID: 11400000, guid: c1dfc09bb643f1a43bca319c9152df3a,
     type: 2}
+  Fire: {fileID: 8012792349786943254}
   MaxHeat:
     UseConstant: 0
     ConstantValue: 0

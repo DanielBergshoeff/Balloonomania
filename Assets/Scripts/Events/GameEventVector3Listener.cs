@@ -24,4 +24,5 @@ public class GameEventVector3Listener : MonoBehaviour
     }
 }
 
+[System.Serializable]
 public class Vector3Event : UnityEvent<Vector3> { }
