@@ -108,7 +108,9 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: f54407e4c06059f43b211be9ffa55a78, type: 2}
   EndGameEvent: {fileID: 11400000, guid: 53d20de0d97c11746885fab2ff4875d2, type: 2}
   MyZoomEvent: {fileID: 11400000, guid: c9ad4285a57085b4b87eaf18317e9e52, type: 2}
-  Score: {fileID: 11400000, guid: 2fff8591c90e09c418753cdc4d80597b, type: 2}
+  ScoreEvent: {fileID: 11400000, guid: f50e8e7f40db702429fd5ef0c8a0baa6, type: 2}
+  AIPrefab: {fileID: 8012792350125822501, guid: bedb689e225e03441ac0d8220cacf335,
+    type: 3}
 --- !u!61 &6307915542189243401
 BoxCollider2D:
   m_ObjectHideFlags: 0

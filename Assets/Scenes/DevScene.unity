@@ -8672,12 +8672,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: FatMan
       objectReference: {fileID: 0}
-    - target: {fileID: 6307915542189243398, guid: a305cbdd227ca6e4a9f30f599856dec2,
-        type: 3}
-      propertyPath: AIPrefab
-      value: 
-      objectReference: {fileID: 8012792350125822501, guid: bedb689e225e03441ac0d8220cacf335,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a305cbdd227ca6e4a9f30f599856dec2, type: 3}
 --- !u!1001 &6819628220175422985

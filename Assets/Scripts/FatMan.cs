@@ -9,7 +9,7 @@ public class FatMan : MonoBehaviour
     public FloatReference SpeedIncreaseLinear;
     public GameEvent EndGameEvent;
     public ZoomEvent MyZoomEvent;
-    public IntVariable Score;
+    public GameEventVector3 ScoreEvent;
 
     public GameObject AIPrefab;
 
@@ -40,13 +40,15 @@ public class FatMan : MonoBehaviour
             EndGameEvent.Raise();
         }
         else {
-            Score.Value += 1000;
+            ScoreEvent.Raise(new Vector3(1000f, 0f, 0f));
             speed = 1f;
             MyZoomEvent.Raise(new Zoom(transform, -5f, 1f));
 
             BalloonFlying bf = collision.collider.GetComponentInParent<BalloonFlying>();
             if(bf != null)
                 bf.enabled = false;
+
+            collision.collider.enabled = false;
 
             StartCoroutine(RespawnAI(collision.collider.transform.parent.gameObject, 5f));
         }
@@ -59,6 +61,8 @@ public class FatMan : MonoBehaviour
 
         Destroy(currentAI);
         GameObject go = Instantiate(AIPrefab);
-        go.transform.position = PlayerBalloonPosition.Value + Vector3.right * 30f;
+        Vector3 spawnPos = PlayerBalloonPosition.Value + Vector3.right * 30f;
+        spawnPos = new Vector3(spawnPos.x, 5f, spawnPos.z);
+        go.transform.position = spawnPos;
     }
 }
