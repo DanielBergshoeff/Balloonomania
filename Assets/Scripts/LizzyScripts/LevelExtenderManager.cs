@@ -58,7 +58,7 @@ public class LevelExtenderManager : MonoBehaviour
     private void EnableFatMan() {
 
         slowestBalloonPos = Mathf.Max(playerBalloon.transform.position.x, AIBalloon.transform.position.x); //figure out which character is behind
-
+        Debug.Log("Slowest balloon is at " + slowestBalloonPos);
         fatMan.transform.position = new Vector3(slowestBalloonPos - spawnOffset, fatMan.transform.position.y, fatMan.transform.position.z); //set fat man to spawn miniman distance from the player most behind
         fatMan.SetActive(true); //enable fatman
     }
