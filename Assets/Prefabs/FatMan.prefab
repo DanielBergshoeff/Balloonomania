@@ -96,6 +96,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2826052ece5426b4581be91b28e5a8da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GlobalSpeedMultiplier:
+    UseConstant: 0
+    ConstantValue: 0
+    Variable: {fileID: 11400000, guid: da9b9b934066213459207dd0cd57d211, type: 2}
   PlayerBalloonPosition: {fileID: 11400000, guid: 3ebe538d08bf208489ac3cee351c30fd,
     type: 2}
   SpeedIncreaseExponential:

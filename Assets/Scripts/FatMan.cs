@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class FatMan : MonoBehaviour
 {
+    public FloatReference GlobalSpeedMultiplier;
     public Vector3Variable PlayerBalloonPosition;
     public FloatReference SpeedIncreaseExponential;
     public FloatReference SpeedIncreaseLinear;
@@ -29,7 +30,7 @@ public class FatMan : MonoBehaviour
     {
         speed = speed * SpeedIncreaseExponential.Value;
         speed += Time.deltaTime * SpeedIncreaseLinear.Value;
-        transform.position = transform.position + transform.right * Time.deltaTime * speed;
+        transform.position = transform.position + transform.right * Time.deltaTime * speed * GlobalSpeedMultiplier.Value;
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {
@@ -51,6 +52,8 @@ public class FatMan : MonoBehaviour
             collision.collider.enabled = false;
 
             StartCoroutine(RespawnAI(collision.collider.transform.parent.gameObject, 5f));
+
+            GlobalSpeedMultiplier.Value += 0.3f;
         }
 
         AudioManager.PlaySound(Sound.Squashed);
@@ -64,5 +67,9 @@ public class FatMan : MonoBehaviour
         Vector3 spawnPos = PlayerBalloonPosition.Value + Vector3.right * 30f;
         spawnPos = new Vector3(spawnPos.x, 5f, spawnPos.z);
         go.transform.position = spawnPos;
+    }
+
+    private void OnDestroy() {
+        GlobalSpeedMultiplier.Value = 1f;
     }
 }

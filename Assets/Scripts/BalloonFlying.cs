@@ -5,6 +5,7 @@ using UnityEngine;
 public class BalloonFlying : MonoBehaviour
 {
     [Header("References")]
+    public FloatReference GlobalSpeedMultiplier;
     public Vector3Variable BalloonPartPosition;
     public Transform Fire;
 
@@ -49,7 +50,7 @@ public class BalloonFlying : MonoBehaviour
 
         grounded = Physics2D.Raycast(transform.position - transform.up * 0.01f, -transform.up, 0.15f).collider != null;
         if (!grounded)
-            transform.position = transform.position + transform.right * Time.deltaTime * HorizontalSpeed.Value * GameManager.GetSpeed(BalloonPartPosition.Value);
+            transform.position = transform.position + transform.right * Time.deltaTime * HorizontalSpeed.Value * GameManager.GetSpeed(BalloonPartPosition.Value) * GlobalSpeedMultiplier.Value;
     }
 
     protected void FixedUpdate() {
