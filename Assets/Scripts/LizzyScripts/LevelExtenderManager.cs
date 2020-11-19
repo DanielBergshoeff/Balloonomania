@@ -6,8 +6,8 @@ public class LevelExtenderManager : MonoBehaviour
 {
     public LevelExtender currentLevelExtender;
     public GameObject playerBalloon;
+    public GameObject introductionLevelRepeatables;
     public GameObject regularLevelRepeatables;
-    public float xPosOffset = 3;
 
     // Start is called before the first frame update
     void Start()
@@ -18,17 +18,23 @@ public class LevelExtenderManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector3(transform.position.x, playerBalloon.transform.position.y, transform.position.z);
+        StayAtPlayerHeight();
     }
-
-
 
     private void OnTriggerEnter2D(Collider2D collider) //Once the player hits the end of the introduction level
     {
-        Debug.Log("Entering trigger collider");
-        if (collider == playerBalloon){ 
-            Debug.Log("YEAAAAAAAAH!!!");
+        Debug.Log("Entering trigger collider with " + collider.name + " of " + collider.transform.parent); //check who is colliding
+        if (collider.transform.parent.name == "PlayerBalloon"){
+            ChangeLevelRepeatables();
         } 
         //set LevelExtender's Background to regularLevelRepeatables
+    }
+
+    void StayAtPlayerHeight() {
+        transform.position = new Vector3(transform.position.x, playerBalloon.transform.position.y, transform.position.z);
+    }
+    private void ChangeLevelRepeatables() {
+        regularLevelRepeatables.SetActive(true);
+        introductionLevelRepeatables.SetActive(false);
     }
 }
