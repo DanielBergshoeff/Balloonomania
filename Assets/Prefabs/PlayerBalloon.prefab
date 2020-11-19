@@ -228,6 +228,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46e14fed612421845968de64dd313603, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GlobalSpeedMultiplier:
+    UseConstant: 0
+    ConstantValue: 0
+    Variable: {fileID: 11400000, guid: da9b9b934066213459207dd0cd57d211, type: 2}
   BalloonPartPosition: {fileID: 11400000, guid: 3ebe538d08bf208489ac3cee351c30fd,
     type: 2}
   Fire: {fileID: 7221967281317874621}
