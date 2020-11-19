@@ -52,33 +52,47 @@ MonoBehaviour:
   - MySound: 2
     MyClip: {fileID: 8300000, guid: d11024a95b3ea674ab8a26a9493afbee, type: 3}
   - MySound: 3
-    MyClip: {fileID: 8300000, guid: 25f6edfa17bbcb145892e096044a0e7f, type: 3}
-  - MySound: 4
-    MyClip: {fileID: 8300000, guid: f3c8a0a0f73d6624aa9302b710108f16, type: 3}
-  - MySound: 5
-    MyClip: {fileID: 8300000, guid: e6cc5158fe355124f8a270c17198998e, type: 3}
-  - MySound: 6
-    MyClip: {fileID: 8300000, guid: 4ef0369d2b59e4347af59ff527f4d8d2, type: 3}
-  - MySound: 7
-    MyClip: {fileID: 8300000, guid: feeefd5d1327a9d4c93f194fd741aead, type: 3}
-  - MySound: 8
-    MyClip: {fileID: 0}
-  - MySound: 9
-    MyClip: {fileID: 0}
-  - MySound: 10
-    MyClip: {fileID: 8300000, guid: f2963f53d56444247a59d64bc91ed1b9, type: 3}
-  - MySound: 11
-    MyClip: {fileID: 8300000, guid: 37e1e7bb5031aab46966665802100f67, type: 3}
-  - MySound: 12
-    MyClip: {fileID: 8300000, guid: 5883cba4c72c99f4890265735dd4b999, type: 3}
-  - MySound: 13
-    MyClip: {fileID: 0}
-  - MySound: 14
-    MyClip: {fileID: 8300000, guid: 01703d2a74a2f1d44822a8a78aafd7eb, type: 3}
-  - MySound: 15
-    MyClip: {fileID: 8300000, guid: 2f68eb42041d7784f884db8e47094aa9, type: 3}
-  - MySound: 3
     MyClip: {fileID: 8300000, guid: 196ddd097192ec3469c63c53ed6719be, type: 3}
+  - MySound: 4
+    MyClip: {fileID: 8300000, guid: 25f6edfa17bbcb145892e096044a0e7f, type: 3}
+  - MySound: 5
+    MyClip: {fileID: 8300000, guid: 22218d2154810f04ba362b810879c883, type: 3}
+  - MySound: 5
+    MyClip: {fileID: 8300000, guid: aaf3408346d45c147a1a110ac8e6b8d4, type: 3}
+  - MySound: 5
+    MyClip: {fileID: 8300000, guid: 2a15d2d8c718e004dbebf9b44c10f3ed, type: 3}
+  - MySound: 5
+    MyClip: {fileID: 8300000, guid: 8cac217196b02d842b80cbaf81deef18, type: 3}
+  - MySound: 6
+    MyClip: {fileID: 8300000, guid: e6cc5158fe355124f8a270c17198998e, type: 3}
+  - MySound: 7
+    MyClip: {fileID: 8300000, guid: 4ef0369d2b59e4347af59ff527f4d8d2, type: 3}
+  - MySound: 8
+    MyClip: {fileID: 8300000, guid: feeefd5d1327a9d4c93f194fd741aead, type: 3}
+  - MySound: 11
+    MyClip: {fileID: 8300000, guid: f2963f53d56444247a59d64bc91ed1b9, type: 3}
+  - MySound: 12
+    MyClip: {fileID: 8300000, guid: 5a161436d594fd24ab6d983290ccf82a, type: 3}
+  - MySound: 13
+    MyClip: {fileID: 8300000, guid: 5883cba4c72c99f4890265735dd4b999, type: 3}
+  - MySound: 14
+    MyClip: {fileID: 8300000, guid: 37e1e7bb5031aab46966665802100f67, type: 3}
+  - MySound: 15
+    MyClip: {fileID: 8300000, guid: 3300e7bb72897804bacd655a3d4bb6f6, type: 3}
+  - MySound: 16
+    MyClip: {fileID: 8300000, guid: dec19fc391e352343b0a3dedb5363276, type: 3}
+  - MySound: 17
+    MyClip: {fileID: 8300000, guid: 369f0ff038088754bb0ea50c801a5d2b, type: 3}
+  - MySound: 17
+    MyClip: {fileID: 8300000, guid: 825fe31e87592ad45a742ba502e3df28, type: 3}
+  - MySound: 17
+    MyClip: {fileID: 8300000, guid: 609a254ca47cf6d4887438d60c69e458, type: 3}
+  - MySound: 18
+    MyClip: {fileID: 8300000, guid: 1103f2c561b259f49b153d5891046185, type: 3}
+  - MySound: 18
+    MyClip: {fileID: 8300000, guid: 16c80bcf26f804d44a7ab941456aa54d, type: 3}
+  - MySound: 18
+    MyClip: {fileID: 8300000, guid: 0398aef892b995145925d771e268dafd, type: 3}
 --- !u!82 &894902713203957329
 AudioSource:
   m_ObjectHideFlags: 0

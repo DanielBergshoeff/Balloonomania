@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class BalloonAbilityPickup : MonoBehaviour
 {
+    public GameEventVector3 ScoreEvent;
     public GameObjectVariable HookPrefab;
     public FloatReference HookMovePercentage;
     public FloatReference HookMoveDuration;
+    public GameEvent PickupEvent;
 
     private Ability currentAbility;
     private GameObject hook;
@@ -66,15 +68,19 @@ public class BalloonAbilityPickup : MonoBehaviour
             return;
 
         AbilityPickup ap = collision.gameObject.GetComponent<AbilityPickup>();
-        if (ap.MyAbility.name == "Hook") {
+        if (ap.MyAbility.name == "Hook" && hook == null) {
             OnHookPickup();
+        }
+        else if(ap.MyAbility.name == "Hook") {
+            ScoreEvent.Raise(new Vector3(100f, 0f, 0f));
         }
 
         currentAbility = ap.MyAbility;
 
         Destroy(collision.gameObject);
 
-        AudioManager.PlaySound(Sound.Pickup);
+        AudioManager.PlayRandomSound(Sound.Pickup);
+        AudioManager.PlayRandomSound(Sound.ItemGetShout);
     }
 
     private void OnHookPickup() {
@@ -86,6 +92,8 @@ public class BalloonAbilityPickup : MonoBehaviour
         h.HookHitEvent = new BalloonEvent();
         h.HookHitEvent.AddListener(ThrowHit);
         postthrow = false;
+
+        PickupEvent.Raise();
     }
 
     private void ThrowStart() {

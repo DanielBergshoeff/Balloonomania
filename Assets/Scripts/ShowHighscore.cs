@@ -5,6 +5,7 @@ using TMPro;
 
 public class ShowHighscore : MonoBehaviour
 {
+    public GameEventVector3 ScoreEvent;
     public IntVariable Highscore;
     public TextMeshProUGUI HighscoreText;
 
@@ -19,13 +20,19 @@ public class ShowHighscore : MonoBehaviour
 
     public void OnStab(BalloonStab bs) {
         if (bs.BalloonStabbed.IsPlayer) {
-            Highscore.Value -= 100;
-            AudioManager.PlaySound(Sound.SubtractScore);
+            ScoreEvent.Raise(new Vector3(-100f, 0f, 0f));
         }
 
         if (bs.BalloonStabbing.IsPlayer) {
-            Highscore.Value += 100;
-            AudioManager.PlaySound(Sound.AddScore);
+            ScoreEvent.Raise(new Vector3(100f, 0f, 0f));
         }
+    }
+
+    public void OnAddPoints(Vector3 amt) {
+        Highscore.Value += (int)amt.x;
+        if(amt.x > 0)
+            AudioManager.PlaySound(Sound.AddScore);
+        else
+            AudioManager.PlaySound(Sound.SubtractScore);
     }
 }

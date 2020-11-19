@@ -154,6 +154,7 @@ GameObject:
   - component: {fileID: 862612976}
   - component: {fileID: 6774151959660535374}
   - component: {fileID: 7221967282283908188}
+  - component: {fileID: 216919980}
   m_Layer: 0
   m_Name: PlayerBalloon
   m_TagString: Player
@@ -227,8 +228,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46e14fed612421845968de64dd313603, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GlobalSpeedMultiplier:
+    UseConstant: 0
+    ConstantValue: 0
+    Variable: {fileID: 11400000, guid: da9b9b934066213459207dd0cd57d211, type: 2}
   BalloonPartPosition: {fileID: 11400000, guid: 3ebe538d08bf208489ac3cee351c30fd,
     type: 2}
+  Fire: {fileID: 7221967281317874621}
   MaxHeat:
     UseConstant: 0
     ConstantValue: 0
@@ -320,6 +326,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ffed52ff1db0e24db17eb96cb590e16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ScoreEvent: {fileID: 11400000, guid: f50e8e7f40db702429fd5ef0c8a0baa6, type: 2}
   HookPrefab: {fileID: 11400000, guid: 948d7c1e3cd10e848b3fd990719c68fd, type: 2}
   HookMovePercentage:
     UseConstant: 0
@@ -329,6 +336,15 @@ MonoBehaviour:
     UseConstant: 0
     ConstantValue: 0
     Variable: {fileID: 11400000, guid: 5053120f1211bbc4387fa3c1fa1ddcec, type: 2}
+  PickupEvent: {fileID: 11400000, guid: 8d179beacab5a374fb5b95ca2595356e, type: 2}
+--- !u!81 &216919980
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7221967281791534297}
+  m_Enabled: 1
 --- !u!1 &7221967282219923922
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,6 +5,7 @@ using UnityEngine;
 public class StabEffect : MonoBehaviour
 {
     public GameObject ParticlePrefab;
+    public GameEvent PlayerStabbed;
 
     private AudioSource myAudioSource;
 
@@ -15,8 +16,12 @@ public class StabEffect : MonoBehaviour
     }
 
     public void OnStab(BalloonStab balloonStab) {
-        myAudioSource.PlayOneShot(AudioManager.GetSound(Sound.BalloonPop));
+        AudioManager.PlaySound(Sound.BalloonPop);
         GameObject go = Instantiate(ParticlePrefab);
         go.transform.position = balloonStab.StabPosition;
+
+        if (balloonStab.BalloonStabbed.IsPlayer) {
+            PlayerStabbed.Raise();
+        }
     }
 }
