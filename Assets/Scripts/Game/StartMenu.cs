@@ -16,11 +16,10 @@ public class StartMenu : MonoBehaviour
     bool zoomingIn = false;
     bool movingUp = false;
     bool movingDown = false;
-    private bool paused = false;
+    private bool paused = true;
 
     float timeElapsed;
     public float lerpDuration = 3;
-
 
     public float zoomingAmount;
     public float moveAmount;
@@ -36,12 +35,14 @@ public class StartMenu : MonoBehaviour
             pos.x = MainCamera.transform.position.x;
             pos.y = MainCamera.transform.position.y;
             transform.position = pos;
+            MainCamera.GetComponent<FollowPlayerCam>().enabled = true;
 
 
-       
         }
         else
         {
+            MainCamera.GetComponent<FollowPlayerCam>().enabled = false;
+
             if (zoomingOut)
             {
                 float newCamPosition;
@@ -49,13 +50,14 @@ public class StartMenu : MonoBehaviour
                 {
                     newCamPosition = Mathf.Lerp(CameraPauzeStartPosition.z, CameraPauzeMenuPosition.z, timeElapsed / lerpDuration);
                     timeElapsed += Time.unscaledDeltaTime;
+                    MainCamera.transform.position = new Vector3(MainCamera.transform.position.x, MainCamera.transform.position.y, newCamPosition);
                 }
                 else
                 {
                     newCamPosition = CameraPauzeMenuPosition.z;
                     zoomingOut = false;
                 }
-                MainCamera.transform.position = new Vector3(MainCamera.transform.position.x, MainCamera.transform.position.y, newCamPosition);
+               
             }
 
             if(zoomingIn)
@@ -65,6 +67,7 @@ public class StartMenu : MonoBehaviour
                 {
                     newCamPosition = Mathf.Lerp(CameraPauzeMenuPosition.z, CameraPauzeStartPosition.z, timeElapsed / lerpDuration);
                     timeElapsed += Time.unscaledDeltaTime;
+                    MainCamera.transform.position = new Vector3(MainCamera.transform.position.x, MainCamera.transform.position.y, newCamPosition);
                 }
                 else
                 {
@@ -72,8 +75,9 @@ public class StartMenu : MonoBehaviour
                     zoomingIn = false;
                     paused = false;
                     MenuPanel.SetActive(false);
+                    Time.timeScale = 1f;
                 }
-                MainCamera.transform.position = new Vector3(MainCamera.transform.position.x, MainCamera.transform.position.y, newCamPosition);
+                
 
             }
 
@@ -84,13 +88,14 @@ public class StartMenu : MonoBehaviour
                 {
                     newCamPosition = Mathf.Lerp(CameraPauzeMenuPosition.y, CameraMainMenuPosition.y, timeElapsed / lerpDuration);
                     timeElapsed += Time.unscaledDeltaTime;
+                    MainCamera.transform.position = new Vector3(MainCamera.transform.position.x, newCamPosition, MainCamera.transform.position.z);
                 }
                 else
                 {
                     newCamPosition = CameraMainMenuPosition.y;
                     movingDown = false;
                 }
-                MainCamera.transform.position = new Vector3(MainCamera.transform.position.x, newCamPosition, MainCamera.transform.position.z);
+               
 
             }
 
@@ -132,13 +137,13 @@ public class StartMenu : MonoBehaviour
         CameraPauzeStartPosition = MainCamera.transform.position;
         CameraPauzeMenuPosition = new Vector3(MainCamera.transform.position.x, MainCamera.transform.position.y, MainCamera.transform.position.z - zoomingAmount);
         zoomingOut = true;
-       
     }
 
     public void ResumeGame()
     {
         timeElapsed = 0f;
-        Time.timeScale = 1f;
+        CameraPauzeStartPosition =  new Vector3(MainCamera.transform.position.x, MainCamera.transform.position.y, MainCamera.transform.position.z + zoomingAmount);
+        CameraPauzeMenuPosition = MainCamera.transform.position;
         zoomingIn = true;
     }
 
@@ -158,6 +163,9 @@ public class StartMenu : MonoBehaviour
     public void PlayGame()  
     {
         timeElapsed = 0f;
+
+        CameraMainMenuPosition = MainCamera.transform.position;
+        CameraPauzeMenuPosition = new Vector3(MainCamera.transform.position.x, MainCamera.transform.position.y + moveAmount, MainCamera.transform.position.z);
         movingUp = true;
         
     }
