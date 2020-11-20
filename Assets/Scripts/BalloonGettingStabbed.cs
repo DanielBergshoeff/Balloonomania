@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class BalloonGettingStabbed : MonoBehaviour
 {
@@ -26,9 +27,13 @@ public class BalloonGettingStabbed : MonoBehaviour
     }
 
     private void Start() {
+        AudioMixer mixer = Resources.Load("Main") as AudioMixer;
+        AudioMixerGroup amx = mixer.FindMatchingGroups("Balloon")[0];
+
         deflateSoundSource = gameObject.AddComponent<AudioSource>();
         deflateSoundSource.clip = AudioManager.GetSound(Sound.Deflate);
         deflateSoundSource.loop = true;
+        deflateSoundSource.outputAudioMixerGroup = amx;
     }
 
     // Update is called once per frame

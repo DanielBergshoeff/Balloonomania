@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class FatMan : MonoBehaviour
 {
@@ -18,10 +19,14 @@ public class FatMan : MonoBehaviour
     private AudioSource myAudioSource;
 
     private void Awake() {
+        AudioMixer mixer = Resources.Load("Main") as AudioMixer;
+        AudioMixerGroup amx = mixer.FindMatchingGroups("Rest")[0];
+
         myAudioSource = gameObject.AddComponent<AudioSource>();
         myAudioSource.spatialBlend = 1f;
         myAudioSource.clip = AudioManager.GetSound(Sound.FatMan);
         myAudioSource.loop = true;
+        myAudioSource.outputAudioMixerGroup = amx;
         myAudioSource.Play();
     }
 
