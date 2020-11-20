@@ -13,6 +13,6 @@ public class MusicManager : MonoBehaviour
     }
 
     private void Update() {
-        myAudioSource.pitch = GlobalSpeed.Value;
+        myAudioSource.pitch = ((GlobalSpeed.Value - 1) / 2) + 1f;
     }
 }
