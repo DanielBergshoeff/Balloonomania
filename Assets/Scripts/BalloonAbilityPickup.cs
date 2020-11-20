@@ -91,6 +91,7 @@ public class BalloonAbilityPickup : MonoBehaviour
         Hook h = hook.GetComponent<Hook>();
         h.HookHitEvent = new BalloonEvent();
         h.HookHitEvent.AddListener(ThrowHit);
+        h.ThrowingPlayer = GetComponent<BalloonInfo>();
         postthrow = false;
 
         PickupEvent.Raise();
@@ -108,6 +109,7 @@ public class BalloonAbilityPickup : MonoBehaviour
         hook.GetComponent<Rigidbody2D>().AddForce(hook.transform.forward * 50f * throwStrength);
         hook.transform.parent = null;
         postthrow = true;
+        hook = null;
 
         AudioManager.PlaySound(Sound.ThrowHook);
     }
@@ -127,8 +129,6 @@ public class BalloonAbilityPickup : MonoBehaviour
         otherStartPosition = bi.transform.position;
 
         startTime = Time.time;
-
-        Destroy(hook);
 
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
         bi.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
@@ -152,7 +152,6 @@ public class BalloonAbilityPickup : MonoBehaviour
             }
 
             hookedBalloon = null;
-            hook = null;
             return;
         }
 
