@@ -29,24 +29,21 @@ public class StartMenu : MonoBehaviour
 
     private void Awake() {
         Time.timeScale = 0f;
+        MainCamera.GetComponent<FollowPlayerCam>().enabled = false;
+        MainCamera.GetComponent<ZoomEventListener>().enabled = false;
     }
 
 
     void Update()
     {
-
         if (!paused)
         {
             pos.x = MainCamera.transform.position.x;
             pos.y = MainCamera.transform.position.y;
             transform.position = pos;
-            MainCamera.GetComponent<FollowPlayerCam>().enabled = true;
-
-
         }
         else
         {
-            MainCamera.GetComponent<FollowPlayerCam>().enabled = false;
 
             if (zoomingOut)
             {
@@ -82,8 +79,6 @@ public class StartMenu : MonoBehaviour
                     MenuPanel.SetActive(false);
                     Time.timeScale = 1f;
                 }
-                
-
             }
 
             if (movingDown)
@@ -142,6 +137,8 @@ public class StartMenu : MonoBehaviour
         CameraPauzeStartPosition = MainCamera.transform.position;
         CameraPauzeMenuPosition = new Vector3(MainCamera.transform.position.x, MainCamera.transform.position.y, MainCamera.transform.position.z - zoomingAmount);
         zoomingOut = true;
+        MainCamera.GetComponent<FollowPlayerCam>().enabled = false;
+        MainCamera.GetComponent<ZoomEventListener>().enabled = false;
     }
 
     public void ResumeGame()
@@ -150,6 +147,8 @@ public class StartMenu : MonoBehaviour
         CameraPauzeStartPosition =  new Vector3(MainCamera.transform.position.x, MainCamera.transform.position.y, MainCamera.transform.position.z + zoomingAmount);
         CameraPauzeMenuPosition = MainCamera.transform.position;
         zoomingIn = true;
+        MainCamera.GetComponent<FollowPlayerCam>().enabled = true;
+        MainCamera.GetComponent<ZoomEventListener>().enabled = true;
     }
 
     public void ToMainMenu()

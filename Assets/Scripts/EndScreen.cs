@@ -14,13 +14,13 @@ public class EndScreen : MonoBehaviour
     }
 
     public void StartOver() {
-        //Time.timeScale = 1f;
+        Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void QuitToMenu()
     {
-        //Time.timeScale = 1f;
+        Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
