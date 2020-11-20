@@ -84,6 +84,11 @@ public class GameManager : MonoBehaviour
         timeTilSwitch[segment] = Random.Range(MinTimePerSwitch, MaxTimePerSwitch);
 
         UpdateLaneVisuals(segment);
+
+        int playerSegment = (int)(PlayerBalloonPosition.Value.y / instance.SegmentSize);
+        if (playerSegment == segment) {
+            AudioManager.PlaySound(val > 0 ? Sound.WindFaster : Sound.WindSlower);
+        }
     }
 
     private void UpdateLaneVisuals(int segment) {
@@ -112,7 +117,7 @@ public class GameManager : MonoBehaviour
         return instance.segments[segment];
     }
 
-    public static float GetDirection(Vector3 pos, int segmentBuffer) {
+    public static float GetDirection(Vector3 pos, int segmentBuffer, bool left) {
         int segment = (int)(pos.y / instance.SegmentSize);
 
         if (segment < 0) 
@@ -123,8 +128,8 @@ public class GameManager : MonoBehaviour
         int speed = instance.segments[segment];
         int topSpeed = 0;
         for (int i = -segmentBuffer; i <= segmentBuffer; i++) {
-            if(segment + i < instance.segments.Length && segment + i >= 0) {
-                if(instance.segments[segment + i] > speed) {
+            if (segment + i < instance.segments.Length && segment + i >= 0) {
+                if ((instance.segments[segment + i] > speed && !left) || (instance.segments[segment + i] < speed && left )) {
                     float dist = (segment + i) * instance.SegmentSize - pos.y;
                     RaycastHit2D hit = Physics2D.Raycast(pos, Vector3.up * i, dist, instance.CollisionMask);
                     Debug.DrawRay(pos, Vector3.up * i * dist, Color.magenta);

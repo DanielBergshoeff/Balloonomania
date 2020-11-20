@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd2c217741e1ded44a7fd35f61716ef3, type: 3}
   m_Name: TimeForHoleFix
   m_EditorClassIdentifier: 
-  Value: 3
+  Value: 1

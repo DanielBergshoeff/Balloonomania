@@ -7,11 +7,14 @@ public class BalloonFlyingAI : BalloonFlying
     public Transform BalloonTop;
     public FloatReference CollisionCheckDistance;
     public IntVariable CheckLanesPerSide;
+    public FloatReference MaxDistancePlayer;
+    public Vector3Variable PlayerBalloonPosition;
 
-
+    private bool playerTooFar;
     protected new void Update() {
         base.Update();
 
+        CheckPlayerDistance();
         CheckDirection();
     }
 
@@ -24,7 +27,7 @@ public class BalloonFlyingAI : BalloonFlying
             RemoveHeat();
         }
         else {
-            if (GameManager.GetDirection(transform.position, 1) < 0f) {
+            if (GameManager.GetDirection(transform.position, CheckLanesPerSide.Value, playerTooFar) < 0f) {
                 ApplyHeat();
             }
             else {
@@ -32,6 +35,10 @@ public class BalloonFlyingAI : BalloonFlying
                 RemoveHeat();
             }
         }
+    }
+
+    private void CheckPlayerDistance() {
+        playerTooFar = transform.position.x > PlayerBalloonPosition.Value.x + MaxDistancePlayer.Value;
     }
 
     private int CheckForCollision() {

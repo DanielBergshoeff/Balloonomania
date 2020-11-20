@@ -13,7 +13,7 @@ public class BalloonAIStabbing : BalloonStabbing
         base.Update();
 
         Vector3 mPos = PlayerBalloonPosition.Value;
-        Sword.LookAt(new Vector3(mPos.x, mPos.y, 0f));
+        Sword.transform.position = mPos;
 
         if (stabCooldown <= 0f)
             TryStab();

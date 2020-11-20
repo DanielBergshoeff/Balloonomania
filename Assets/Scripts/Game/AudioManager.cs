@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 [RequireComponent(typeof(AudioSource))]
 public class AudioManager : MonoBehaviour
@@ -10,11 +11,44 @@ public class AudioManager : MonoBehaviour
     public List<SoundToClip> AllClips;
 
     private AudioSource myAudioSource;
+    private AudioSource ambientAudioSource;
 
     void Awake()
     {
         Instance = this;
+
+        AudioMixer mixer = Resources.Load("Main") as AudioMixer;
+        AudioMixerGroup amx = mixer.FindMatchingGroups("Rest")[0];
+
         myAudioSource = GetComponent<AudioSource>();
+        ambientAudioSource = gameObject.AddComponent<AudioSource>();
+
+        myAudioSource.outputAudioMixerGroup = amx;
+        ambientAudioSource.outputAudioMixerGroup = amx;
+    }
+
+    private void Start() {
+        ambientAudioSource.clip = GetSound(Sound.Ambient);
+        ambientAudioSource.loop = true;
+        ambientAudioSource.Play();
+    }
+
+    public static AudioClip GetRandomSound(Sound soundToPlay) {
+        if (Instance == null || Instance.AllClips == null)
+            return null;
+
+        List<AudioClip> tempList = new List<AudioClip>();
+        foreach (SoundToClip stc in Instance.AllClips) {
+            if (stc.MySound == soundToPlay) {
+                tempList.Add(stc.MyClip);
+            }
+        }
+
+        if (tempList.Count == 0)
+            return null;
+        else {
+            return tempList[Random.Range(0, tempList.Count)];
+        }
     }
 
     public static AudioClip GetSound(Sound soundToPlay) {
@@ -31,14 +65,11 @@ public class AudioManager : MonoBehaviour
     }
 
     public static void PlaySound(Sound soundToPlay) {
-        if (Instance == null || Instance.AllClips == null)
-            return;
+        Instance.myAudioSource.PlayOneShot(GetSound(soundToPlay));
+    }
 
-        foreach (SoundToClip stc in Instance.AllClips) {
-            if (stc.MySound == soundToPlay) {
-                Instance.myAudioSource.PlayOneShot(stc.MyClip);
-            }
-        }
+    public static void PlayRandomSound(Sound soundToPlay) {
+        Instance.myAudioSource.PlayOneShot(GetRandomSound(soundToPlay));
     }
 }
 
@@ -47,6 +78,7 @@ public enum Sound
     Ascend,
     SwordStab,
     Deflate,
+    BalloonPop,
     Repair,
     Curse,
     Pickup,
@@ -58,7 +90,10 @@ public enum Sound
     Squashed,
     Ambient,
     GameFinished,
-    WindChange
+    WindSlower,
+    WindFaster,
+    SwordStabShout,
+    ItemGetShout
 }
 
 [System.Serializable]

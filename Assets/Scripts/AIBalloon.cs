@@ -49,7 +49,7 @@ public class AIBalloon : Balloon
         else if (coll == -1)
             RemoveHeat();
         else {
-            if (GameManager.GetDirection(transform.position, 1) < 0f) {
+            if (GameManager.GetDirection(transform.position, 1, false) < 0f) {
                 ApplyHeat();
             }
             else {

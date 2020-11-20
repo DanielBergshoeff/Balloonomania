@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2260247921086222158}
   - component: {fileID: 2260247921086222257}
-  - component: {fileID: 2260247921086222259}
   - component: {fileID: 2260247921086222256}
+  - component: {fileID: 5594206}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -59,7 +59,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 1
+  orthographic: 0
   orthographic size: 10
   m_Depth: -1
   m_CullingMask:
@@ -76,14 +76,6 @@ Camera:
   m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &2260247921086222259
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2260247921086222258}
-  m_Enabled: 1
 --- !u!114 &2260247921086222256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,5 +89,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MinHeight: 5
-  MaxHeight: 10
+  MaxHeight: 20
+  ZoomTime:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
   PlayerPosition: {fileID: 11400000, guid: 3ebe538d08bf208489ac3cee351c30fd, type: 2}
+--- !u!114 &5594206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2260247921086222258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f3e3c5681429c74ab9185861ee914d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: c9ad4285a57085b4b87eaf18317e9e52, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2260247921086222256}
+        m_MethodName: OnZoom
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class TauntSystem : MonoBehaviour
 {
     public GameEventBalloonInfo TauntEvent;
-    public BalloonInfo bi;
+    public ZoomEvent MyZoomEvent;
 
     public SpriteListVariable Taunts;
     public GameObject TauntPrefab;
@@ -21,7 +21,8 @@ public class TauntSystem : MonoBehaviour
     }
 
     private void Start() {
-        //TauntEvent.Raise(bi);
+        //MyZoomEvent.Raise(new Zoom(transform.position, 1f));
+        //TauntEvent.Raise(GameObject.FindGameObjectWithTag("Player").GetComponent<BalloonInfo>());
     }
 
     public void Taunt(BalloonInfo bi) {
@@ -33,14 +34,15 @@ public class TauntSystem : MonoBehaviour
         GameObject go = Instantiate(TauntPrefab);
         go.transform.position = bi.transform.position + Vector3.up * 1f + Vector3.right * 2f;
         go.GetComponentInChildren<Image>().sprite = GetRandomTaunt();
-        go.transform.parent = bi.transform;
+        go.transform.SetParent(bi.transform);
 
         BalloonInfoTaunt bit = new BalloonInfoTaunt(bi, go);
         currentTaunts.Add(bit);
 
         StartCoroutine(RemoveTaunt(TauntLength.Value, bit));
+        //MyZoomEvent.Raise(new Zoom(go.transform, 10f, 1f));
 
-        AudioManager.PlaySound(Sound.Curse);
+        AudioManager.PlayRandomSound(Sound.Curse);
     }
 
     private Sprite GetRandomTaunt() {
