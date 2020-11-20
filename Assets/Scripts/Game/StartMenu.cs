@@ -8,6 +8,9 @@ public class StartMenu : MonoBehaviour
 
     public GameObject MenuPanel;
     public GameObject MainCamera;
+    public GameEvent MainMenuEvent;
+    public GameEvent PlayGameEvent;
+
     Vector3 pos;
     Vector3 CameraPauzeStartPosition;
     Vector3 CameraPauzeMenuPosition;
@@ -24,7 +27,10 @@ public class StartMenu : MonoBehaviour
     public float zoomingAmount;
     public float moveAmount;
 
-
+    private void Awake() {
+        Time.timeScale = 0f;
+        MainMenuEvent.Raise();
+    }
 
 
     void Update()
@@ -153,6 +159,7 @@ public class StartMenu : MonoBehaviour
         
         CameraMainMenuPosition = new Vector3(MainCamera.transform.position.x, MainCamera.transform.position.y - moveAmount, MainCamera.transform.position.z);
         movingDown = true;
+        MainMenuEvent.Raise();
     }
 
     public void QuitGame()
@@ -167,7 +174,7 @@ public class StartMenu : MonoBehaviour
         CameraMainMenuPosition = MainCamera.transform.position;
         CameraPauzeMenuPosition = new Vector3(MainCamera.transform.position.x, MainCamera.transform.position.y + moveAmount, MainCamera.transform.position.z);
         movingUp = true;
-        
+        PlayGameEvent.Raise();
     }
 
 
