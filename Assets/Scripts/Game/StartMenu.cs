@@ -29,7 +29,6 @@ public class StartMenu : MonoBehaviour
 
     private void Awake() {
         Time.timeScale = 0f;
-        MainMenuEvent.Raise();
     }
 
 
@@ -164,6 +163,7 @@ public class StartMenu : MonoBehaviour
 
     public void QuitGame()
     {
+        Application.Quit();
         AppHelper.Quit();
     }
 
