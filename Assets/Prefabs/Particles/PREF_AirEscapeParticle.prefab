@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4696893470593618566}
   - component: {fileID: 1804163808330597841}
   m_Layer: 0
-  m_Name: PREF_StabbedParticle
+  m_Name: PREF_AirEscapeParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4757,7 +4757,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 6
   m_RenderMode: 0
   m_SortMode: 0
   m_MinParticleSize: 0

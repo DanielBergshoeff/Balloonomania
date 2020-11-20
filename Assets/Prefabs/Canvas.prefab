@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1526557180}
   m_LocalRotation: {x: -0, y: -0, z: 0.020857409, w: 0.99978244}
-  m_LocalPosition: {x: 4.88, y: 0.07, z: 6.2899966}
+  m_LocalPosition: {x: 4.43, y: 0.05, z: 6.2899966}
   m_LocalScale: {x: 1.230853, y: 1.1190642, z: 0.97919995}
   m_Children: []
   m_Father: {fileID: 5474570520816663647}
@@ -69,7 +69,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 16
   m_Sprite: {fileID: 21300000, guid: 07fdb6199739ef04b96540a14d1da996, type: 3}
   m_Color: {r: 0.5754717, g: 0.5754717, b: 0.5754717, a: 1}
   m_FlipX: 0
@@ -150,7 +150,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 4
+  m_SortingOrder: 17
   m_Sprite: {fileID: 21300000, guid: 07fdb6199739ef04b96540a14d1da996, type: 3}
   m_Color: {r: 0.7075472, g: 0.7075472, b: 0.7075472, a: 1}
   m_FlipX: 0
@@ -405,6 +405,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MenuPanel: {fileID: 5474570520816663644}
   MainCamera: {fileID: 0}
+  MainMenuEvent: {fileID: 11400000, guid: 256a28b2a0347504ca2dbdcbb0fc61a1, type: 2}
+  PlayGameEvent: {fileID: 11400000, guid: 464c0367b4fa8e541a59cc24e8d69fb2, type: 2}
   lerpDuration: 0.4
   zoomingAmount: 7.75
   moveAmount: 16
@@ -772,7 +774,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 18
   m_Sprite: {fileID: 21300000, guid: 07fdb6199739ef04b96540a14d1da996, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
