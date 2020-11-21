@@ -8,6 +8,9 @@ public class StartMenu : MonoBehaviour
 
     public GameObject MenuPanel;
     public GameObject MainCamera;
+    public GameEvent MainMenuEvent;
+    public GameEvent PlayGameEvent;
+
     Vector3 pos;
     Vector3 CameraPauzeStartPosition;
     Vector3 CameraPauzeMenuPosition;
@@ -16,32 +19,32 @@ public class StartMenu : MonoBehaviour
     bool zoomingIn = false;
     bool movingUp = false;
     bool movingDown = false;
-    private bool paused = false;
+    private bool paused = true;
 
     float timeElapsed;
     public float lerpDuration = 3;
 
-
     public float zoomingAmount;
     public float moveAmount;
 
-
+    private void Awake() {
+        Time.timeScale = 0f;
+        MainCamera.GetComponent<FollowPlayerCam>().enabled = false;
+        MainCamera.GetComponent<ZoomEventListener>().enabled = false;
+    }
 
 
     void Update()
     {
-
         if (!paused)
         {
             pos.x = MainCamera.transform.position.x;
             pos.y = MainCamera.transform.position.y;
             transform.position = pos;
-
-
-       
         }
         else
         {
+
             if (zoomingOut)
             {
                 float newCamPosition;
@@ -49,13 +52,14 @@ public class StartMenu : MonoBehaviour
                 {
                     newCamPosition = Mathf.Lerp(CameraPauzeStartPosition.z, CameraPauzeMenuPosition.z, timeElapsed / lerpDuration);
                     timeElapsed += Time.unscaledDeltaTime;
+                    MainCamera.transform.position = new Vector3(MainCamera.transform.position.x, MainCamera.transform.position.y, newCamPosition);
                 }
                 else
                 {
                     newCamPosition = CameraPauzeMenuPosition.z;
                     zoomingOut = false;
                 }
-                MainCamera.transform.position = new Vector3(MainCamera.transform.position.x, MainCamera.transform.position.y, newCamPosition);
+               
             }
 
             if(zoomingIn)
@@ -65,6 +69,7 @@ public class StartMenu : MonoBehaviour
                 {
                     newCamPosition = Mathf.Lerp(CameraPauzeMenuPosition.z, CameraPauzeStartPosition.z, timeElapsed / lerpDuration);
                     timeElapsed += Time.unscaledDeltaTime;
+                    MainCamera.transform.position = new Vector3(MainCamera.transform.position.x, MainCamera.transform.position.y, newCamPosition);
                 }
                 else
                 {
@@ -72,9 +77,8 @@ public class StartMenu : MonoBehaviour
                     zoomingIn = false;
                     paused = false;
                     MenuPanel.SetActive(false);
+                    Time.timeScale = 1f;
                 }
-                MainCamera.transform.position = new Vector3(MainCamera.transform.position.x, MainCamera.transform.position.y, newCamPosition);
-
             }
 
             if (movingDown)
@@ -84,13 +88,14 @@ public class StartMenu : MonoBehaviour
                 {
                     newCamPosition = Mathf.Lerp(CameraPauzeMenuPosition.y, CameraMainMenuPosition.y, timeElapsed / lerpDuration);
                     timeElapsed += Time.unscaledDeltaTime;
+                    MainCamera.transform.position = new Vector3(MainCamera.transform.position.x, newCamPosition, MainCamera.transform.position.z);
                 }
                 else
                 {
                     newCamPosition = CameraMainMenuPosition.y;
                     movingDown = false;
                 }
-                MainCamera.transform.position = new Vector3(MainCamera.transform.position.x, newCamPosition, MainCamera.transform.position.z);
+               
 
             }
 
@@ -132,14 +137,18 @@ public class StartMenu : MonoBehaviour
         CameraPauzeStartPosition = MainCamera.transform.position;
         CameraPauzeMenuPosition = new Vector3(MainCamera.transform.position.x, MainCamera.transform.position.y, MainCamera.transform.position.z - zoomingAmount);
         zoomingOut = true;
-       
+        MainCamera.GetComponent<FollowPlayerCam>().enabled = false;
+        MainCamera.GetComponent<ZoomEventListener>().enabled = false;
     }
 
     public void ResumeGame()
     {
         timeElapsed = 0f;
-        Time.timeScale = 1f;
+        CameraPauzeStartPosition =  new Vector3(MainCamera.transform.position.x, MainCamera.transform.position.y, MainCamera.transform.position.z + zoomingAmount);
+        CameraPauzeMenuPosition = MainCamera.transform.position;
         zoomingIn = true;
+        MainCamera.GetComponent<FollowPlayerCam>().enabled = true;
+        MainCamera.GetComponent<ZoomEventListener>().enabled = true;
     }
 
     public void ToMainMenu()
@@ -148,18 +157,23 @@ public class StartMenu : MonoBehaviour
         
         CameraMainMenuPosition = new Vector3(MainCamera.transform.position.x, MainCamera.transform.position.y - moveAmount, MainCamera.transform.position.z);
         movingDown = true;
+        MainMenuEvent.Raise();
     }
 
     public void QuitGame()
     {
+        Application.Quit();
         AppHelper.Quit();
     }
 
     public void PlayGame()  
     {
         timeElapsed = 0f;
+
+        CameraMainMenuPosition = MainCamera.transform.position;
+        CameraPauzeMenuPosition = new Vector3(MainCamera.transform.position.x, MainCamera.transform.position.y + moveAmount, MainCamera.transform.position.z);
         movingUp = true;
-        
+        PlayGameEvent.Raise();
     }
 
 

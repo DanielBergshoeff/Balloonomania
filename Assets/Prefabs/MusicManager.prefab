@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 4970038489362331845}
   - component: {fileID: 4970038489362331844}
   - component: {fileID: 4970038489362331847}
+  - component: {fileID: 1014431349515359259}
+  - component: {fileID: 1050941059626616117}
   m_Layer: 0
   m_Name: MusicManager
   m_TagString: Untagged
@@ -43,7 +45,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -2143364148624631390, guid: 22c72021109bdc0458e54b778dbe4519,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 15c8fdee8493cff4184ba3aad950c4a0, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 316b83d4e15919b4182db1edc6ab394c, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -141,3 +143,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc4012a25a7344441acae8dd3bc31b30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GlobalSpeed:
+    UseConstant: 0
+    ConstantValue: 0
+    Variable: {fileID: 11400000, guid: da9b9b934066213459207dd0cd57d211, type: 2}
+  GameMusic: {fileID: 11400000, guid: e804618afb1496e44a3596f0ca05a118, type: 2}
+  MenuMusic: {fileID: 11400000, guid: 7b37f11295a33394d936b75d8488bf0b, type: 2}
+--- !u!114 &1014431349515359259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4970038489362331846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb1bd2d5aa48daf46993743c607910f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 256a28b2a0347504ca2dbdcbb0fc61a1, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4970038489362331847}
+        m_MethodName: PlayMenuMusic
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1050941059626616117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4970038489362331846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb1bd2d5aa48daf46993743c607910f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 464c0367b4fa8e541a59cc24e8d69fb2, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4970038489362331847}
+        m_MethodName: PlayGameMusic
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

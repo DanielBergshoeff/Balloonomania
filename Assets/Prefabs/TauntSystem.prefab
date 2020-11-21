@@ -45,13 +45,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TauntEvent: {fileID: 11400000, guid: 384f2f642dc0c0d46b96d18fef2c9139, type: 2}
-  bi: {fileID: 0}
-  Taunts: {fileID: 11400000, guid: ede7cfa026a9bc34ebe73c859ce0208e, type: 2}
+  MyZoomEvent: {fileID: 0}
+  Taunts: {fileID: 11400000, guid: 216ba3d7de5405a48b35a746a3951086, type: 2}
   TauntPrefab: {fileID: 8388118886258971563, guid: 32a662640b402be478118d7b098c82df,
     type: 3}
   TauntLength:
     UseConstant: 1
-    ConstantValue: 10
+    ConstantValue: 5
     Variable: {fileID: 0}
 --- !u!114 &4604280423777528389
 MonoBehaviour:
